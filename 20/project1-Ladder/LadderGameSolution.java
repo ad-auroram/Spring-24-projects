@@ -81,30 +81,40 @@ public class LadderGameSolution {
         ArrayList<String> l = wordLists[a.length()];
         ArrayList list = (ArrayList) l.clone();
         System.out.println("Seeking a solution from " + a + " -> " + b + " Size of List " + list.size());
+
+        int totalEnqueue = 0;
         LadderInfo start = new LadderInfo(a, 0, a);
         Queue partialSolutions = new Queue();
         partialSolutions.enqueueItem(start);
-
+        totalEnqueue ++;
         Character[] alphabet = {'a','b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
         boolean done = false;
+
         while (!done) {
             String[] currLadder = partialSolutions.dequeueItem();
             String currentStep = currLadder[currLadder.length - 1];
-            char[] myNameChars = a.toCharArray();
-            for (int i = 0; i < a.length(); i++) {
+            char[] myNameChars = currentStep.toCharArray();
+            for (int i = 0; i < currentStep.length(); i++) {
                 for (char letter : alphabet) {
                     myNameChars[i] = letter;
                     String next = String.valueOf(myNameChars);
                     if (list.contains(next)) {
                         LadderInfo step = new LadderInfo(next, currLadder.length, Arrays.toString(currLadder));
                         if (next == b) {
+                            System.out.println("Solution found!");
+                            System.out.printf("%s -> %s    %d steps     ", a, b, step.moves);
+                            step.toString();
+                            System.out.printf("Total enqueues: %d", totalEnqueue);
                             done = true;
                         }
+                        totalEnqueue ++;
                         partialSolutions.enqueueItem(step);
                     }
                 }
             }
         }
+
+
     }
 
     /**
