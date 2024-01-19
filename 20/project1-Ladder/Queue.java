@@ -12,49 +12,48 @@ public class Queue<E> {
     }
 
 
-    public class List {
-        private Node head; // the first element of the list
-        private Node tail; // the last element of the list
-        private int size;
+    private Node head; // the first element of the list
+    private Node tail; // the last element of the list
+    private int size;
 
-        public void enqueueItem(E value) {
-            if (tail != null) {
-                tail.nextVal = new Node<>(value);
-                tail.nextVal = tail;
-            } else {
-                tail = new Node<>(value);
-                head = tail;
-            }
-
-        }
-
-        public Node popItem(E value) {
-            if (head == null) {
-                System.out.println("List is empty");
-            } else {
-                Node temp = head;
-                head = head.nextVal;
-                return temp;
-            }
-            return null;
-        }
-
-        public String printContents() {
-            if (head == null) {
-                return "List in empty!";
-            } else {
-                Node temp = head;
-                while (temp != null) {
-                    System.out.println(temp.data);
-                    temp = temp.nextVal;
-
-                }
-            }
-            return "Done!";
+    public void enqueueItem(E value) {
+        if (tail != null) {
+            tail.nextVal = new Node<>(value);
+            tail.nextVal = tail;
+        } else {
+            tail = new Node<>(value);
+            head = tail;
         }
 
     }
+
+    public Node popItem(E value) {
+        if (head == null) {
+            System.out.println("List is empty");
+        } else {
+            Node temp = head;
+            head = head.nextVal;
+            return temp;
+        }
+        return null;
+    }
+
+    public String printContents() {
+        if (head == null) {
+            return "List in empty!";
+        } else {
+            Node temp = head;
+            while (temp != null) {
+                System.out.println(temp.data);
+                temp = temp.nextVal;
+
+            }
+        }
+        return "Done!";
+    }
+
 }
+
 
 
 

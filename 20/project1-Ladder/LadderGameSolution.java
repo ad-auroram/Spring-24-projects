@@ -80,8 +80,13 @@ public class LadderGameSolution {
         ArrayList<String> l = wordLists[a.length()];
         ArrayList list = (ArrayList) l.clone();
         System.out.println("Seeking a solution from " + a + " -> " + b + " Size of List " + list.size());
+        LadderInfo start = new LadderInfo(a, 0, a);
+        Queue partialSolutions = new Queue();
+        partialSolutions.enqueueItem(start);
 
         Character[] alphabet = {'a','b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+        //while (!partialSolutionQueue.isEmpty() && !done){
+
         char[] myNameChars = a.toCharArray();
         for (int i=0; i<a.length();i++) {
             for (char letter:alphabet) {
