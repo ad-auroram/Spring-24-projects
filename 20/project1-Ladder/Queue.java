@@ -27,13 +27,13 @@ public class Queue<E> {
 
     }
 
-    public Node popItem(E value) {
+    public String[] dequeueItem() {
         if (head == null) {
             System.out.println("List is empty");
         } else {
             Node temp = head;
             head = head.nextVal;
-            return temp;
+            return new String[]{temp.toString()};
         }
         return null;
     }
