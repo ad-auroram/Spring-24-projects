@@ -86,17 +86,22 @@ public class LadderGameSolution {
         partialSolutions.enqueueItem(start);
 
         Character[] alphabet = {'a','b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-        //while (!partialSolutionQueue.isEmpty() && !done){
-        String[] currLadder = partialSolutions.dequeueItem();
-        String currentStep = currLadder[currLadder.length-1];
-        char[] myNameChars = a.toCharArray();
-        for (int i=0; i<a.length();i++) {
-            for (char letter:alphabet) {
-                myNameChars[i] = letter;
-                String next = String.valueOf(myNameChars);
-                if (list.contains(next)){
-                    LadderInfo step = new LadderInfo(next, currLadder.length, Arrays.toString(currLadder));
-                    partialSolutions.enqueueItem(step);
+        boolean done = false;
+        while (!done) {
+            String[] currLadder = partialSolutions.dequeueItem();
+            String currentStep = currLadder[currLadder.length - 1];
+            char[] myNameChars = a.toCharArray();
+            for (int i = 0; i < a.length(); i++) {
+                for (char letter : alphabet) {
+                    myNameChars[i] = letter;
+                    String next = String.valueOf(myNameChars);
+                    if (list.contains(next)) {
+                        LadderInfo step = new LadderInfo(next, currLadder.length, Arrays.toString(currLadder));
+                        if (next == b) {
+                            done = true;
+                        }
+                        partialSolutions.enqueueItem(step);
+                    }
                 }
             }
         }
