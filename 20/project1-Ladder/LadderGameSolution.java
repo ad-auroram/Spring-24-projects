@@ -106,7 +106,7 @@ public class LadderGameSolution {
         String[] dest = {"yuk", "hog", "tied", "tots", "tied", "ands", "angrily", "fast", "money", "axal", "notified", "doughy"};
 
         // This organization allows the dictionary to be read in only once.
-        LadderGame g = new LadderGame("dictionary.txt");
+        LadderGameSolution g = new LadderGameSolution("dictionary.txt");
         for (int i = 0; i < source.length; i++) {
             g.play(source[i], dest[i]);
         }

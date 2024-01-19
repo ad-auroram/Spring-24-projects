@@ -1,6 +1,6 @@
 public class Queue<E> {
 
-    public class Node<E> {
+    public static class Node<E> {
         public E data;
         public Node nextVal;
 
@@ -22,18 +22,21 @@ public class Queue<E> {
                 tail.nextVal = new Node<>(value);
                 tail.nextVal = tail;
             } else {
-                tail.nextVal = new Node<>(value);
+                tail = new Node<>(value);
                 head = tail;
             }
 
         }
 
-        public void popItem(E value) {
+        public Node popItem(E value) {
             if (head == null) {
                 System.out.println("List is empty");
             } else {
+                Node temp = head;
                 head = head.nextVal;
+                return temp;
             }
+            return null;
         }
 
         public String printContents() {
@@ -44,6 +47,7 @@ public class Queue<E> {
                 while (temp != null) {
                     System.out.println(temp.data);
                     temp = temp.nextVal;
+
                 }
             }
             return "Done!";
