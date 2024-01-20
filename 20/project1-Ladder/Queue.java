@@ -12,17 +12,22 @@ public class Queue<E> {
     }
 
 
-    private Node head; // the first element of the list
-    private Node tail; // the last element of the list
-    private int size;
+    public Node head; // the first element of the list
+    public Node tail; // the last element of the list
+    public int size;
 
     public void enqueueItem(E value) {
         if (tail != null) {
             tail.nextVal = new Node<>(value);
             tail = tail.nextVal;
+            size ++;
+            if (head == null){
+                head = tail;
+            }
         } else {
-            tail = new Node<>(value);
-            head = tail;
+            head = new Node<>(value);
+            tail = head;
+            size ++;
         }
 
     }
@@ -31,8 +36,9 @@ public class Queue<E> {
         if (head == null) {
             System.out.println("List is empty");
         } else {
-            Node temp = head;
+            Node temp = new Node(head.data);
             head = head.nextVal;
+            size --;
             return temp;
         }
         return null;

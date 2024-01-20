@@ -104,12 +104,15 @@ public class LadderGameSolution {
                     String next = String.valueOf(myNameChars);
                     if (list.contains(next)) {
                         list.remove(next);
-                        LadderInfo step = new LadderInfo(next, 0, currLadder.ladder()+" " +next);
-                        if (next == b) {
+                        String[] splited = currLadder.ladder().split(" ");
+                        LadderInfo step = new LadderInfo(next, splited.length, currLadder.ladder()+" " +next);
+                        if (next.equals(b)) {
                             System.out.println("Solution found!");
-                            System.out.printf("%s -> %s    %d steps     ", a, b, step.moves);
-                            step.toString();
-                            System.out.printf("Total enqueues: %d", totalEnqueue);
+                            System.out.printf("Moves: %d  ", step.moves);
+                            String result = step.toString();
+                            System.out.printf(" Ladder: %s", result);
+                            System.out.printf("  Total enqueues: %d", totalEnqueue);
+                            System.out.println();
                             done = true;
                         }
                         totalEnqueue ++;

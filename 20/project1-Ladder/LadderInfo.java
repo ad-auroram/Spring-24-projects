@@ -17,7 +17,7 @@ public class LadderInfo {
        return "Word " + lastWord    + " Moves " +moves  + " Ladder ["+ ladder +"]";
     }
     public String toString(){
-        return "  ["+ ladder +"]";
+        return "["+ ladder +"]";
     }
 
     public String ladder(){
