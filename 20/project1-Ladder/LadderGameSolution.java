@@ -50,7 +50,8 @@ public class LadderGameSolution {
         if (a.length() >= MaxWordSize) {
             return;
         }
-
+        ArrayList<String> l = wordLists[a.length()];
+        ArrayList list = (ArrayList) l.clone();
 
 
         // Verify that provided words are valid
@@ -65,7 +66,7 @@ public class LadderGameSolution {
         }
 
         // Solve the word ladder problem
-        findLadder(a, b);
+        findLadder(a, b, list);
         System.out.println();
     }
 
@@ -77,11 +78,10 @@ public class LadderGameSolution {
      * @param a starting word
      * @param b ending word
      */
-    public void findLadder(String a, String b) {
-        ArrayList<String> l = wordLists[a.length()];
-        ArrayList list = (ArrayList) l.clone();
-        System.out.println("Seeking a solution from " + a + " -> " + b + " Size of List " + list.size());
+    public void findLadder(String a, String b, ArrayList list) {
 
+        System.out.println("Seeking a solution from " + a + " -> " + b + " Size of List " + list.size());
+        list.remove(a);
         int totalEnqueue = 0;
         LadderInfo start = new LadderInfo(a, 0, a);
         Queue partialSolutions = new Queue();
@@ -91,15 +91,20 @@ public class LadderGameSolution {
         boolean done = false;
 
         while (!done) {
-            String[] currLadder = partialSolutions.dequeueItem();
-            String currentStep = currLadder[currLadder.length - 1];
+            LadderInfo currLadder= (LadderInfo) partialSolutions.dequeueItem().data;
+            String currentStep = currLadder.lastWord;
             char[] myNameChars = currentStep.toCharArray();
-            for (int i = 0; i < currentStep.length(); i++) {
+            char[] myCharsOg = myNameChars.clone();
+            for (int i = 0; i < myNameChars.length; i++) {
+                if (i>0) {
+                    myNameChars[i - 1] = myCharsOg[i - 1];
+                }
                 for (char letter : alphabet) {
                     myNameChars[i] = letter;
                     String next = String.valueOf(myNameChars);
                     if (list.contains(next)) {
-                        LadderInfo step = new LadderInfo(next, currLadder.length, Arrays.toString(currLadder));
+                        list.remove(next);
+                        LadderInfo step = new LadderInfo(next, 0, currLadder.ladder()+" " +next);
                         if (next == b) {
                             System.out.println("Solution found!");
                             System.out.printf("%s -> %s    %d steps     ", a, b, step.moves);
@@ -109,6 +114,7 @@ public class LadderGameSolution {
                         }
                         totalEnqueue ++;
                         partialSolutions.enqueueItem(step);
+
                     }
                 }
             }

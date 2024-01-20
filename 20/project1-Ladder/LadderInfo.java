@@ -19,5 +19,13 @@ public class LadderInfo {
     public String toString(){
         return "  ["+ ladder +"]";
     }
+
+    public String ladder(){
+        return this.ladder;
+    }
+
+    public String getLast(){
+        return lastWord;
+    }
 }
 

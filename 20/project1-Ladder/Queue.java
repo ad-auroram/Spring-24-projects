@@ -19,7 +19,7 @@ public class Queue<E> {
     public void enqueueItem(E value) {
         if (tail != null) {
             tail.nextVal = new Node<>(value);
-            tail.nextVal = tail;
+            tail = tail.nextVal;
         } else {
             tail = new Node<>(value);
             head = tail;
@@ -27,13 +27,13 @@ public class Queue<E> {
 
     }
 
-    public String[] dequeueItem() {
+    public Node dequeueItem() {
         if (head == null) {
             System.out.println("List is empty");
         } else {
             Node temp = head;
             head = head.nextVal;
-            return new String[]{temp.toString()};
+            return temp;
         }
         return null;
     }
