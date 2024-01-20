@@ -91,7 +91,7 @@ public class LadderGameSolution {
         boolean done = false;
 
         while (!done) {
-            LadderInfo currLadder= (LadderInfo) partialSolutions.dequeueItem().data;
+            LadderInfo currLadder = (LadderInfo) partialSolutions.dequeueItem().data;
             String currentStep = currLadder.lastWord;
             char[] myNameChars = currentStep.toCharArray();
             char[] myCharsOg = myNameChars.clone();
@@ -104,8 +104,8 @@ public class LadderGameSolution {
                     String next = String.valueOf(myNameChars);
                     if (list.contains(next)) {
                         list.remove(next);
-                        String[] splited = currLadder.ladder().split(" ");
-                        LadderInfo step = new LadderInfo(next, splited.length, currLadder.ladder()+" " +next);
+                        String[] split = currLadder.ladder().split(" ");
+                        LadderInfo step = new LadderInfo(next, split.length, currLadder.ladder()+" " +next);
                         if (next.equals(b)) {
                             System.out.println("Solution found!");
                             System.out.printf("Moves: %d  ", step.moves);

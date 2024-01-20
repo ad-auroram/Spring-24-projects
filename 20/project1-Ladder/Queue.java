@@ -34,10 +34,13 @@ public class Queue<E> {
 
     public Node dequeueItem() {
         if (head == null) {
-            System.out.println("List is empty");
+            System.out.println("Queue is empty, no solution found.");
         } else {
             Node temp = new Node(head.data);
             head = head.nextVal;
+            if(head == null) {
+                tail = null;
+            }
             size --;
             return temp;
         }
