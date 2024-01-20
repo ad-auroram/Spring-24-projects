@@ -34,7 +34,7 @@ public class Queue<E> {
 
     public Node dequeueItem() {
         if (head == null) {
-            System.out.println("Queue is empty, no solution found.");
+            System.out.println("Queue is empty.");
         } else {
             Node temp = new Node(head.data);
             head = head.nextVal;
