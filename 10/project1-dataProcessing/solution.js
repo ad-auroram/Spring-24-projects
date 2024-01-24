@@ -52,6 +52,16 @@ function pairIf(data1, data2, predicate){
     //for each value of the arrays
     //if predicate returns true, append {data1[i], data2[i]}
     //return array
+
+    const newArray = []
+    for (value of data1){
+        for(data of data2){
+            if (predicate(value, data)){
+                newArray.push([data, value]);
+            }
+        }
+    }
+    return newArray;
 }
 
 function reduce(data1, reducer, initialValue){
