@@ -36,6 +36,13 @@ function map(data, callback){
     //for each value in data, pass through the callback, assign to temp variable
     //append temp to new array
     //return new array
+
+    const newArray = [];
+    for (value of data){
+        let temp = callback(value);
+        newArray.push(temp);
+    }
+    return newArray;
 }
 
 function pairIf(data1, data2, predicate){
