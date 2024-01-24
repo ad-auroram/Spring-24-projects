@@ -5,6 +5,13 @@ function filter(data, predicate){
     //create new array
     //for each value in data, if it meets predicate condition, append to array
     //return array
+    const newArray = [];
+    for (const value of data){
+        if (predicate(value)){
+            newArray.push(value)
+        }
+    }
+    return newArray;
 }
 
 function findLast(data, predicate){
