@@ -19,6 +19,14 @@ function findLast(data, predicate){
 
     //starting at the last value of the array and going back
     //if a value meets the condition of the predicate, return value
+
+    for (let i = data.length-1; i>=0; i--){
+        if (predicate(date[i])){
+            return data[i];
+        }
+    }
+    console.log("No value meets the condition.")
+    return null;
 }
 
 function map(data, callback){
