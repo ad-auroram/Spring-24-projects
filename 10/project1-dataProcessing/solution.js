@@ -55,10 +55,10 @@ function pairIf(data1, data2, predicate){
     //return array
 
     const newArray = []
-    for (value of data1){
-        for(data of data2){
-            if (predicate(value, data)){
-                newArray.push([data, value]);
+    for (val1 of data1){
+        for(val2 of data2){
+            if (predicate(val1, val2)){
+                newArray.push([val2, val1]);
             }
         }
     }
@@ -74,8 +74,10 @@ function reduce(data1, reducer, initialValue){
 let validJam = ["FIG_JAM", "FIG_JELLY", "SPICY_FIG_JAM", "ORANGE_FIG_JELLY"];
 const numInvalid = filter(transactions, value => value.amount===null||value.amount===undefined||value.amount===0||validJam.includes(value.product)===false).length;
 
+const duplicates = pairIf(customers, customers, (val1, val2) => val1.emailAddress===val2.emailAddress && val1.id !== val2.id).length/2;
+
 console.log(`Number of invalid transactions: ${numInvalid}`);
-console.log("Number of duplicate customers: ${}");
+console.log(`Number of duplicate customers: ${duplicates}`);
 console.log("Most recnet transaction over $200: $${}");
 console.log("Number of small transactions: ${}");
 console.log("Number of medium transactions: ${}");
