@@ -65,22 +65,40 @@ function pairIf(data1, data2, predicate){
     return newArray;
 }
 
-function reduce(data1, reducer, initialValue){
+function reduce(data, reducer, initialValue){
     //takes a dataset and reduces it based on the predicate
     //example given returned two arrays, sorted numbers into evens and odds
     //
+    let acc = initialValue;
+    for (val of data){
+        reducer(val, acc);
+    }
+    return acc;
 }
 
 let validJam = ["FIG_JAM", "FIG_JELLY", "SPICY_FIG_JAM", "ORANGE_FIG_JELLY"];
 const numInvalid = filter(transactions, value => value.amount===null||value.amount===undefined||value.amount===0||validJam.includes(value.product)===false).length;
 const duplicates = pairIf(customers, customers, (val1, val2) => val1.emailAddress===val2.emailAddress && val1.id !== val2.id).length/2;
 const overAmount = findLast(transactions, data => data.amount > 200).amount;
+//debugger;
+const sortedTransaction = reduce(transactions, (val, acc) => {
+    if (val.amount<=25){
+        acc.small.push(val);
+    }else if (25<val.amount<75){
+        acc.medium.push(val);;
+    }else if (75<=val.amount){
+        acc.large.push(val);;
+    }
+}, {small: [], medium: [], large: []});
+const small = sortedTransaction.small.length;
+const medium = sortedTransaction.medium.length;
+const large = sortedTransaction.large.length;
 
 console.log(`Number of invalid transactions: ${numInvalid}`);
 console.log(`Number of duplicate customers: ${duplicates}`);
 console.log(`Most recnet transaction over $200: $${overAmount}`);
-console.log("Number of small transactions: ${}");
-console.log("Number of medium transactions: ${}");
-console.log("Number of large transactions: ${}");
+console.log(`Number of small transactions: ${small}`);
+console.log(`Number of medium transactions: ${medium}`);
+console.log(`Number of large transactions: ${large}`);
 console.log("Customers with transactions over $200: ${}");
 console.log("Names of customers with transactions over $200: ${}");
