@@ -69,3 +69,13 @@ function reduce(data1, reducer, initialValue){
     //example given returned two arrays, sorted numbers into evens and odds
     //
 }
+
+
+console.log("Number of invalid transactions: ${}");
+console.log("Number of duplicate customers: ${}");
+console.log("Most recnet transaction over $200: $${}");
+console.log("Number of small transactions: ${}");
+console.log("Number of medium transactions: ${}");
+console.log("Number of large transactions: ${}");
+console.log("Customers with transactions over $200: ${}");
+console.log("Names of customers with transactions over $200: ${}");
