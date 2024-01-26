@@ -22,7 +22,7 @@ function findLast(data, predicate){
     //if a value meets the condition of the predicate, return value
 
     for (let i = data.length-1; i>=0; i--){
-        if (predicate(date[i])){
+        if (predicate(data[i])){
             return data[i];
         }
     }
@@ -73,12 +73,12 @@ function reduce(data1, reducer, initialValue){
 
 let validJam = ["FIG_JAM", "FIG_JELLY", "SPICY_FIG_JAM", "ORANGE_FIG_JELLY"];
 const numInvalid = filter(transactions, value => value.amount===null||value.amount===undefined||value.amount===0||validJam.includes(value.product)===false).length;
-
 const duplicates = pairIf(customers, customers, (val1, val2) => val1.emailAddress===val2.emailAddress && val1.id !== val2.id).length/2;
+const overAmount = findLast(transactions, data => data.amount > 200).amount;
 
 console.log(`Number of invalid transactions: ${numInvalid}`);
 console.log(`Number of duplicate customers: ${duplicates}`);
-console.log("Most recnet transaction over $200: $${}");
+console.log(`Most recnet transaction over $200: $${overAmount}`);
 console.log("Number of small transactions: ${}");
 console.log("Number of medium transactions: ${}");
 console.log("Number of large transactions: ${}");
