@@ -82,12 +82,14 @@ const duplicates = pairIf(customers, customers, (val1, val2) => val1.emailAddres
 const overAmount = findLast(transactions, data => data.amount > 200).amount;
 //debugger;
 const sortedTransaction = reduce(transactions, (val, acc) => {
-    if (val.amount<=25){
-        acc.small.push(val);
-    }else if (25<val.amount<75){
-        acc.medium.push(val);;
-    }else if (75<=val.amount){
-        acc.large.push(val);;
+    if (val.amount!==null&&val.amount!==undefined&&val.amount!==0&&validJam.includes(val.product)===true){
+        if (val.amount<=25){
+            acc.small.push(val);
+        }else if (25<=val.amount && val.amount<75){
+            acc.medium.push(val);
+        }else if (75<=val.amount){
+            acc.large.push(val);
+        }
     }
 }, {small: [], medium: [], large: []});
 const small = sortedTransaction.small.length;
