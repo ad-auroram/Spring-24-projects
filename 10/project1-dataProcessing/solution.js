@@ -82,12 +82,15 @@ const small = sortedTransaction.small.length;
 const medium = sortedTransaction.medium.length;
 const large = sortedTransaction.large.length;
 
-const overAmount = filter(transactions, value => value.amount>200);
-const pairedVals = pairIf(overAmount, customers, (val1, val2) => val1.id === val2.id);
+const overAmount = filter(transactions, value => value.amount!==null && value.amount!==undefined && value.amount>200 && validJam.includes(value.product)===true);
+const pairedVals = pairIf(customers, overAmount, (val1, val2) => val1.id === val2.id);
 const customerList = reduce(pairedVals, (val, acc) => {
-    acc.push(val[2]);
+    if (acc.includes(val.id)===false){
+    acc.push(val[1]);
+    }
 }, []);
-const namesList = map(customerList, (value) => `${value.firstName}  ${value.lastName}`);
+
+const namesList = map(customerList, value => `${value.firstName}  ${value.lastName}`);
 
 
 
@@ -97,5 +100,7 @@ console.log(`Most recnet transaction over $200: $${lastOverAmount}`);
 console.log(`Number of small transactions: ${small}`);
 console.log(`Number of medium transactions: ${medium}`);
 console.log(`Number of large transactions: ${large}`);
-console.log(`Customers with transactions over $200: ${customerList}`);
-console.log(`Names of customers with transactions over $200: ${namesList}`);
+console.log(`Customers with transactions over $200: ${customerList.length}`);
+console.log(customerList);
+console.log(`Names of customers with transactions over $200: ${namesList.length}`);
+console.log(namesList);
