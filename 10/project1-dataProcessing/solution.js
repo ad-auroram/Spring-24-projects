@@ -1,3 +1,4 @@
+console.log(transactions)
 
 function filter(data, predicate){
     //take an array of data and return a new array with entries based on a predicate
@@ -70,8 +71,10 @@ function reduce(data1, reducer, initialValue){
     //
 }
 
+let validJam = ["FIG_JAM", "FIG_JELLY", "SPICY_FIG_JAM", "ORANGE_FIG_JELLY"];
+const numInvalid = filter(transactions, value => value.amount===null||value.amount===undefined||value.amount===0||validJam.includes(value.product)===false).length;
 
-console.log("Number of invalid transactions: ${}");
+console.log(`Number of invalid transactions: ${numInvalid}`);
 console.log("Number of duplicate customers: ${}");
 console.log("Most recnet transaction over $200: $${}");
 console.log("Number of small transactions: ${}");
