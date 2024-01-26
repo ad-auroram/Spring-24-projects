@@ -1,4 +1,3 @@
-console.log(transactions)
 
 function filter(data, predicate){
     //take an array of data and return a new array with entries based on a predicate
@@ -59,6 +58,7 @@ function reduce(data, reducer, initialValue){
     return acc;
 }
 
+
 let validJam = ["FIG_JAM", "FIG_JELLY", "SPICY_FIG_JAM", "ORANGE_FIG_JELLY"];
 const numInvalid = filter(transactions, value => value.amount===null||value.amount===undefined||value.amount===0||validJam.includes(value.product)===false).length;
 
@@ -67,7 +67,7 @@ const duplicates = pairIf(customers, customers, (val1, val2) => val1.emailAddres
 const lastOverAmount = findLast(transactions, data => data.amount > 200).amount;
 //debugger;
 const sortedTransaction = reduce(transactions, (val, acc) => {
-    if (val.amount!==null&&val.amount!==undefined&&val.amount!==0&&validJam.includes(val.product)===true){
+    if (val.amount!==null&&val.amount!==undefined&&val.amount!==0&&validJam.includes(val.product)){
         if (val.amount<=25){
             acc.small.push(val);
         }else if (25<=val.amount && val.amount<75){
@@ -82,17 +82,14 @@ const small = sortedTransaction.small.length;
 const medium = sortedTransaction.medium.length;
 const large = sortedTransaction.large.length;
 
-const overAmount = filter(transactions, value => value.amount!==null && value.amount!==undefined && value.amount>200 && validJam.includes(value.product)===true);
-const pairedVals = pairIf(customers, overAmount, (val1, val2) => val1.id === val2.id);
+const overAmount = filter(transactions, value => value.amount!==null && value.amount!==undefined && value.amount>200 && validJam.includes(value.product));
+const pairedVals = pairIf(customers, overAmount, (val1, val2) => val1.id === val2.customerId);
 const customerList = reduce(pairedVals, (val, acc) => {
-    if (acc.includes(val.id)===false){
+    if (acc.includes(val[1])===false){
     acc.push(val[1]);
     }
 }, []);
-
 const namesList = map(customerList, value => `${value.firstName}  ${value.lastName}`);
-
-
 
 console.log(`Number of invalid transactions: ${numInvalid}`);
 console.log(`Number of duplicate customers: ${duplicates}`);
