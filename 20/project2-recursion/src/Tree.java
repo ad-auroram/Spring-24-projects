@@ -121,19 +121,22 @@ public class Tree<E extends Comparable<? super E>> {
      */
     public int deepestNode() {
         if (root==null) return 0;
-        int max = 0;
-        deepestNode(root, 0, max);
-        return max;
+        int level = 0;
+        return deepestNode(root, level);
     }
 
-    private void deepestNode(BinaryNode<E> node, int level, int max){
-        if (node!=null) {
-            deepestNode(node.right, level + 1, max);
-            if (level > max) {
-                max = level;
-            }
-            deepestNode(node.left, level + 1, max);
+    private int deepestNode(BinaryNode<E> node, int level){
+        if (node == null) return 0;
+        int right = deepestNode(node.right, level + 1);
+        int left = deepestNode(node.left, level + 1);
+        if (left > right) {
+            return left;
+        }else if (right > left){
+            return right;
+        }else{
+            return (Integer)node.element;
         }
+
     }
 
     /**
