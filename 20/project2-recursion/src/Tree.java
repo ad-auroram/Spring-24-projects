@@ -140,15 +140,21 @@ public class Tree<E extends Comparable<? super E>> {
     }
 
     /**
-     * The complexity of finding the flip is O(???)
+     * The complexity of finding the flip is O(n)
      * reverse left and right children recursively
      */
     public void flip() {
         flip(root);
     }
 
-    private void flip(BinaryNode<E> t) {
-
+    private void flip(BinaryNode<E> node) {
+        if (node != null){
+            BinaryNode<E> temp = node.right;
+            node.right = node.left;
+            node.left = temp;
+            flip(node.left);
+            flip(node.right);
+        }
     }
 
     /**
