@@ -119,8 +119,21 @@ public class Tree<E extends Comparable<? super E>> {
      *
      * @return the value of the node at the deepest level
      */
-    public E deepestNode() {
-        return null;
+    public int deepestNode() {
+        if (root==null) return 0;
+        int max = 0;
+        deepestNode(root, 0, max);
+        return max;
+    }
+
+    private void deepestNode(BinaryNode<E> node, int level, int max){
+        if (node!=null) {
+            deepestNode(node.right, level + 1, max);
+            if (level > max) {
+                max = level;
+            }
+            deepestNode(node.left, level + 1, max);
+        }
     }
 
     /**
