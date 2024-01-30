@@ -78,7 +78,14 @@ public class Tree<E extends Comparable<? super E>> {
         if (root == null)
             return treeName + " Empty tree";
         else
-            return treeName + " Please write the code to display the tree";
+            return treeName + toString(root, "");
+    }
+
+    private String toString(BinaryNode<E> node, String space){
+        if (node == null) return "";
+        String left = toString(node.left, space+"    ")+"\n";
+        String right = toString(node.right, space+"    ")+"\n";
+        return space + right + space+node.element + space + left;
     }
 
     /**
