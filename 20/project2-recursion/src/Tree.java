@@ -1,6 +1,9 @@
 // ******************ERRORS********************************
 // Throws UnderflowException as appropriate
 
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+
 class UnderflowException extends RuntimeException {
     /**
      * Construct this exception object.
@@ -183,7 +186,21 @@ public class Tree<E extends Comparable<? super E>> {
      * The complexity of printAllPaths is O(???)
      */
     public void printAllPaths() {
+        if (root == null){
+            System.out.println("Tree is empty");
+        }
+        printAllPaths(root);
+    }
 
+    private String printAllPaths(BinaryNode<E> node){
+        if (node == null){
+            return "";
+        }
+        System.out.print(node.element + " ");
+        printAllPaths(node.right);
+        printAllPaths(node.left);
+        System.out.println("\n");
+        return "done";
     }
 
 
@@ -306,7 +323,7 @@ public class Tree<E extends Comparable<? super E>> {
      * @return integer representing sum of all nodes
      */
     public Integer sumAll(BinaryNode<Integer> t) {
-        return 0;
+        return t.element + sumAll(t.right)+ sumAll(t.left);
     }
 
     /**
@@ -323,8 +340,26 @@ public class Tree<E extends Comparable<? super E>> {
      * Balance the tree
      */
      public void balanceTree() {
-        //root = balanceTree(root);
+         ArrayList<Integer> nodes = new ArrayList<>();
+         balanceTree(root, nodes);
+         int count = nodes.size();
+         Integer[] vals = new Integer[count];
+         for(int i=0; i<count; i++) {
+             vals[i] = nodes.get(i);
+         }
+
+         Tree<Integer> tree = new Tree<Integer>(vals, treeName,true);
+
     }
+
+    private void balanceTree(BinaryNode<E> t, ArrayList<Integer> nodes){
+        if (t==null) return;
+        balanceTree(t.left, nodes);
+        nodes.add((Integer)t.element);
+        balanceTree(t.right, nodes);
+
+    }
+
 
     /**
      * In a BST, keep only nodes between range
@@ -332,6 +367,7 @@ public class Tree<E extends Comparable<? super E>> {
      * @param b highest value
      */
     public void keepRange(E a, E b) {
+
     }
 
     // Basic node stored in unbalanced binary  trees
