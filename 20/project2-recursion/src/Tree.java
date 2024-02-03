@@ -189,18 +189,19 @@ public class Tree<E extends Comparable<? super E>> {
         if (root == null){
             System.out.println("Tree is empty");
         }
-        printAllPaths(root);
+        printAllPaths(root, "");
     }
 
-    private String printAllPaths(BinaryNode<E> node){
+    private void printAllPaths(BinaryNode<E> node, String path){
         if (node == null){
-            return "";
+            return;
         }
-        System.out.print(node.element + " ");
-        printAllPaths(node.right);
-        printAllPaths(node.left);
-        System.out.println("\n");
-        return "done";
+        path += node.element + " ";
+        if (node.left == null && node.right == null){
+            System.out.println(path);
+        }
+        printAllPaths(node.right, path);
+        printAllPaths(node.left, path);
     }
 
 
