@@ -213,7 +213,17 @@ public class Tree<E extends Comparable<? super E>> {
      */
     public Integer countBST() {
         if (root == null) return 0;
-        return -1;
+        int count = 0;
+        return countBST((BinaryNode<Integer>) root, count);
+    }
+
+    private int countBST(BinaryNode<Integer> node, int count){
+        if (node == null) return 0;
+        if (node.left == null || node.right == null) return 0;
+        if (node.right.element > node.element && node.left.element < node.element){
+            count += 1;
+        }
+        return count + countBST(node.left, count) + countBST(node.right, count);
     }
 
     /**
@@ -349,15 +359,17 @@ public class Tree<E extends Comparable<? super E>> {
              vals[i] = nodes.get(i);
          }
 
-         Tree<Integer> tree = new Tree<Integer>(vals, treeName,true);
-
+         Tree<Integer> tree = new Tree<Integer>(vals, treeName,false);
+         root = (BinaryNode<E>) tree.root;
     }
 
     private void balanceTree(BinaryNode<E> t, ArrayList<Integer> nodes){
         if (t==null) return;
+
         balanceTree(t.left, nodes);
         nodes.add((Integer)t.element);
         balanceTree(t.right, nodes);
+
 
     }
 
