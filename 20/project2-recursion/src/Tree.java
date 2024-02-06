@@ -118,7 +118,7 @@ public class Tree<E extends Comparable<? super E>> {
 
 
     /**
-     * The complexity of finding the deepest node is O(???)
+     * The complexity of finding the deepest node is O(n)
      *
      * @return the value of the node at the deepest level
      */
@@ -379,8 +379,52 @@ public class Tree<E extends Comparable<? super E>> {
      * @param a lowest value
      * @param b highest value
      */
-    public void keepRange(E a, E b) {
+    public void keepRange(int a, int b) {
+        keepRange(null, root, a, b);
+    }
 
+    private void keepRange(BinaryNode<E> parent, BinaryNode<E>node, int a, int b){
+        if (node == null) return;
+        if (a > (Integer)node.element || b<(Integer)node.element){
+            deleteNode(parent, node);
+        }
+        keepRange(node, node.left, a, b);
+        keepRange(node, node.right, a, b);
+    }
+
+    private void deleteNode(BinaryNode<E> parent, BinaryNode<E> node){
+        if (node.left == null){
+            replace(parent, node, node.right);
+        } else if (node.right == null) {
+            replace(parent, node, node.left);
+        }else{
+            node.element= findMin(node);
+            minNode(node, node.right);
+        }
+    }
+
+    private E findMin(BinaryNode<E> node) {
+        while (node.left != null) {
+            node = node.left;
+        }
+        return node.element;
+    }
+    private void minNode(BinaryNode<E> parent, BinaryNode<E> node){
+        if (node.left == null) {
+            replace(parent, node, node.right);
+        } else {
+            minNode(node, node.left);
+        }
+    }
+
+
+    private void replace(BinaryNode<E> parent, BinaryNode<E> oldKid, BinaryNode<E> newKid){
+        if (parent.left == oldKid){
+            parent.left = newKid;
+        }
+        if (parent.right == oldKid){
+            parent.right = newKid;
+        }
     }
 
     // Basic node stored in unbalanced binary  trees
