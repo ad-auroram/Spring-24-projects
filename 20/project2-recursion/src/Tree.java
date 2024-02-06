@@ -296,7 +296,33 @@ public class Tree<E extends Comparable<? super E>> {
      * @param sum: minimum path sum allowed in final tree
      */
     public void pruneK(Integer sum) {
+        root = (BinaryNode<E>) pruneK((BinaryNode<Integer>) root, sum);
     }
+
+    private BinaryNode<Integer> pruneK(BinaryNode<Integer> node, Integer sum) {
+        if (node == null) return null;
+
+        sum -= node.element;
+        if (node.left == null && node.right == null) {
+            if (sum == 0) {
+                return node;
+            } else {
+                return null;
+            }
+        }
+        node.left = pruneK(node.left, sum);
+        node.right = pruneK(node.right, sum);
+
+        if (node.left == null && node.right == null && sum == 0) {
+            return node;
+        }
+
+        if (node.left == null && node.right == null) {
+            return null;
+        }
+        return node;
+    }
+
 
     /**
      * Build tree given inOrder and preOrder traversals.  Each value is unique
@@ -314,12 +340,11 @@ public class Tree<E extends Comparable<? super E>> {
      * @param a first node
      * @param b second node
      * @return String representation of ancestor
-     */
+     /
     public String lca(BinaryNode<E> t, E a, E b) {
         return null;
     }
 
-    /**
      * We ensure the tree is an Integer tree (for sum makes sense)
      * @return integer representing sum of all nodes
      */
@@ -344,7 +369,22 @@ public class Tree<E extends Comparable<? super E>> {
      * @return value of node which is the least common ancestor
      */
     public E lca(E a, E b) {
-        return null;
+        if (root == null) return null;
+        return lca(root, a, b);
+    }
+
+    private E lca(BinaryNode<E> node, E a, E b){
+        if (node == null) return null;
+        if (node.element.equals(a) || node.element.equals(b)) return node.element;
+        E rightlca = lca(node.right, a, b);
+        E leftlca = lca(node.left, a, b);
+        if (rightlca != null && leftlca != null){
+            return root.element;
+        } else if(leftlca != null){
+            return leftlca;
+        } else{
+            return rightlca;
+        }
     }
 
     /**
