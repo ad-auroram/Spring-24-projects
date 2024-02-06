@@ -103,17 +103,17 @@ public class Tree<E extends Comparable<? super E>> {
 
     /**
      * Internal method to return a string of items in the tree in order
-     * This routine runs in O(??)
+     * This routine runs in O(n)
      *
      * @param t the node that roots the subtree.
      */
     public String toString2(BinaryNode<E> t) {
         if (t == null) return "";
-        StringBuilder sb = new StringBuilder();
-        sb.append(toString2(t.left));
-        sb.append(t.element.toString() + " ");
-        sb.append(toString2(t.right));
-        return sb.toString();
+        StringBuilder string = new StringBuilder();
+        string.append(toString2(t.left));
+        string.append(t.element.toString() + " ");
+        string.append(toString2(t.right));
+        return string.toString();
     }
 
 
@@ -162,7 +162,7 @@ public class Tree<E extends Comparable<? super E>> {
 
     /**
      * Counts number of nodes in specified level
-     * The complexity of nodesInLevel is O(???)
+     * The complexity of nodesInLevel is O(2^n)
      *
      * @param level Level in tree, root is level zero
      * @return count of number of nodes at specified level
@@ -183,7 +183,7 @@ public class Tree<E extends Comparable<? super E>> {
 
     /**
      * Print all paths from root to leaves
-     * The complexity of printAllPaths is O(???)
+     * The complexity of printAllPaths is O(n)
      */
     public void printAllPaths() {
         if (root == null){
@@ -207,7 +207,7 @@ public class Tree<E extends Comparable<? super E>> {
 
     /**
      * Counts all non-null binary search trees embedded in tree
-     * The complexity of countBST is O(???)
+     * The complexity of countBST is O(n)
      *
      * @return Count of embedded binary search trees
      */
