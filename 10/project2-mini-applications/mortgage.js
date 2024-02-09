@@ -25,7 +25,6 @@ function updateValue(){
     
     let payment = loan*((monthInt*Math.pow((1+monthInt), months))/(Math.pow((1+monthInt), months)-1));
     output.innerHTML = `$${payment.toFixed(2)} per month.`;
-
 }
 
 output.innerHTML = "$181.69 per month."
