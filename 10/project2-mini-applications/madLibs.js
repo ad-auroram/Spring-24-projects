@@ -25,6 +25,6 @@ genButton.addEventListener("click", () =>{
     `\n- Adventurers, bring me ${number} kobold ${pluralNoun}. Will pay in ${food}. <br>`+
     `\n- When I was ${verbIng} my clothes, I lost my magic ring at the bottom of the town ${noun2}. Please someone ${verb} it back for me? <br>`)
 
-    output.innerHTML =`${text}`;
+    output.innerHTML =text;
 ;});
 
