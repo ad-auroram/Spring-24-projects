@@ -6,11 +6,13 @@ public class LadderInfo {
     public String lastWord;   // last word of ladder
     public int moves;         // number of moves in ladder
     public String ladder;     // series of words in current word ladder
+    public Integer priority;      // number of previous moves + cost to reach solution
 
-    public LadderInfo(String word, int moves, String ladder){
+    public LadderInfo(String word, int moves, String ladder, int priority){
         this.lastWord = word;
         this.moves = moves;
         this.ladder = ladder;
+        this.priority = priority;
     }
 
     public String toString2(){
@@ -26,6 +28,10 @@ public class LadderInfo {
 
     public String getLast(){
         return lastWord;
+    }
+
+    public int compareTo(LadderInfo l2){
+        return (this.priority.compareTo(l2.priority));
     }
 }
 

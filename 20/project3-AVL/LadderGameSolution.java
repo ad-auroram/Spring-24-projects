@@ -83,7 +83,7 @@ public class LadderGameSolution {
         System.out.println("Seeking a solution from " + a + " -> " + b + " Size of List " + list.size());
         list.remove(a);
         int totalEnqueue = 0;
-        LadderInfo start = new LadderInfo(a, 0, a);
+        LadderInfo start = new LadderInfo(a, 0, a, 0);
         Queue partialSolutions = new Queue();
         partialSolutions.enqueueItem(start);
         totalEnqueue ++;
@@ -105,7 +105,7 @@ public class LadderGameSolution {
                         if (list.contains(next)) {
                             list.remove(next);
                             String[] split = currLadder.ladder().split(" ");
-                            LadderInfo step = new LadderInfo(next, split.length, currLadder.ladder() + " " + next);
+                            LadderInfo step = new LadderInfo(next, split.length, currLadder.ladder() + " " + next, 0);
                             if (next.equals(b)) {
                                 String result = step.toString();
                                 System.out.println("Solution found!");
