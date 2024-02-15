@@ -68,6 +68,8 @@ public class LadderGameSolution {
         // Solve the word ladder problem
         findLadderForce(a, b, list);
         System.out.println();
+        findLadderA(a, b, l);
+        System.out.println();
     }
 
 
@@ -94,15 +96,15 @@ public class LadderGameSolution {
             while (!done) {
                 LadderInfo currLadder = (LadderInfo) partialSolutions.dequeueItem().data;
                 String currentStep = currLadder.lastWord;
-                char[] myNameChars = currentStep.toCharArray();
-                char[] myCharsOg = myNameChars.clone();
-                for (int i = 0; i < myNameChars.length; i++) {
+                char[] myChars = currentStep.toCharArray();
+                char[] myCharsOg = myChars.clone();
+                for (int i = 0; i < myChars.length; i++) {
                     if (i > 0) {
-                        myNameChars[i - 1] = myCharsOg[i - 1];
+                        myChars[i - 1] = myCharsOg[i - 1];
                     }
                     for (char letter : alphabet) {
-                        myNameChars[i] = letter;
-                        String next = String.valueOf(myNameChars);
+                        myChars[i] = letter;
+                        String next = String.valueOf(myChars);
                         if (list.contains(next)) {
                             list.remove(next);
                             String[] split = currLadder.ladder().split(" ");
@@ -115,6 +117,57 @@ public class LadderGameSolution {
                             }
                             totalEnqueue++;
                             partialSolutions.enqueueItem(step);
+                        }
+                    }
+                }
+            }
+        }catch(Exception e){
+            System.out.println("Solution not found.");
+        }
+    }
+
+    public void findLadderA(String a, String b, ArrayList list){
+        System.out.println("Seeking an A* solution from " + a + " -> " + b + " Size of List " + list.size());
+        int totalEnqueue = 0;
+        LadderInfo start = new LadderInfo(a, 0, a, 1+a.toCharArray().length);
+        AVLTree<LadderInfo> solutionTree = new AVLTree<>();
+        solutionTree.insert(start);
+        totalEnqueue ++;
+        Character[] alphabet = {'a','b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+        boolean done = false;
+        try {
+            while (!done) {
+                LadderInfo currLadder = solutionTree.findMin();
+                solutionTree.deleteMin();
+                String currentStep = currLadder.lastWord;
+                char[] myChars = currentStep.toCharArray();
+                char[] myCharsOg = myChars.clone();
+                for (int i = 0; i < myChars.length; i++) {
+                    if (i > 0) {
+                        myChars[i - 1] = myCharsOg[i - 1];
+                    }
+                    for (char letter : alphabet) {
+                        myChars[i] = letter;
+                        String next = String.valueOf(myChars);
+                        if (list.contains(next)) {
+                            int cost = 0;
+                            char[] goal = b.toCharArray();
+                            for (int step=0; step<myChars.length; step++){
+                                if (myChars[step] != goal[step]){
+                                        cost++;
+                                }
+                            }
+                            String[] split = currLadder.ladder().split(" ");
+                            int priority = split.length+cost ;
+                            LadderInfo step = new LadderInfo(next, split.length, currLadder.ladder() + " " + next, priority);
+                            if (next.equals(b)) {
+                                String result = step.toString();
+                                System.out.println("Solution found!");
+                                System.out.printf("Moves: %d   Ladder: %s  Total enqueues: %d \n", step.moves, result, totalEnqueue);
+                                done = true;
+                            }
+                            totalEnqueue++;
+                            solutionTree.insert(step);
                         }
                     }
                 }

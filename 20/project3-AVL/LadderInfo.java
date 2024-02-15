@@ -2,7 +2,7 @@
  * This class creates WordInfo objects which allows the program
  * to keep track of words, their ladder, and number of moves previous to the word.
  */
-public class LadderInfo {
+public class LadderInfo implements Comparable<LadderInfo> {
     public String lastWord;   // last word of ladder
     public int moves;         // number of moves in ladder
     public String ladder;     // series of words in current word ladder
