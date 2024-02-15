@@ -66,7 +66,7 @@ public class LadderGameSolution {
         }
 
         // Solve the word ladder problem
-        findLadder(a, b, list);
+        findLadderForce(a, b, list);
         System.out.println();
     }
 
@@ -78,7 +78,7 @@ public class LadderGameSolution {
      * @param a starting word
      * @param b ending word
      */
-    public void findLadder(String a, String b, ArrayList list) {
+    public void findLadderForce(String a, String b, ArrayList list) {
 
         System.out.println("Seeking a solution from " + a + " -> " + b + " Size of List " + list.size());
         list.remove(a);
@@ -89,6 +89,7 @@ public class LadderGameSolution {
         totalEnqueue ++;
         Character[] alphabet = {'a','b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
         boolean done = false;
+
         try {
             while (!done) {
                 LadderInfo currLadder = (LadderInfo) partialSolutions.dequeueItem().data;
@@ -114,7 +115,6 @@ public class LadderGameSolution {
                             }
                             totalEnqueue++;
                             partialSolutions.enqueueItem(step);
-
                         }
                     }
                 }
@@ -122,8 +122,6 @@ public class LadderGameSolution {
         }catch(Exception e){
             System.out.println("Solution not found.");
         }
-
-
     }
 
     /**
@@ -146,18 +144,19 @@ public class LadderGameSolution {
      * Notice that the main program just sets up the problem.  All the code to solve the problem is outside of main.
      */
     public static void main(String[] args) {
-        String[] source = {"irk", "hit", "toes", "oops", "toes",  "ride", "happily", "slow", "stone", "biff", "unabated", "basket"};
-        String[] dest = {"yuk", "hog", "tied", "tots", "tied", "ands", "angrily", "fast", "money", "axal", "notified", "doughy"};
+        String[] source = {"kiss", "cock", "jura", "stet", "rums",  "ride"};
+        String[] dest = {"woof", "numb", "such", "whey", "numb", "ands"};
 
         // This organization allows the dictionary to be read in only once.
         LadderGameSolution g = new LadderGameSolution("dictionary.txt");
         for (int i = 0; i < source.length; i++) {
             g.play(source[i], dest[i]);
         }
-
+/*
         int RANDOMCT = 8;
         for (int i = 4; i <= RANDOMCT; i++)
             g.play(i);
-
+*/
     }
+
 }
