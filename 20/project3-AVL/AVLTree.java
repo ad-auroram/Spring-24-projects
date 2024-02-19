@@ -236,14 +236,14 @@ public class AVLTree<AnyType extends Comparable<? super AnyType>> {
 
     /**
      * Internal method to find an item in a subtree.
-     * @param x is item to search for.
+     * @param item is item to search for.
      * @param node the node that roots the tree.
      * @return true if x is found in subtree.
      */
-    private boolean contains( AnyType x, AvlNode<AnyType> node ){
+    private boolean contains( AnyType item, AvlNode<AnyType> node ){
         while( node != null )
         {
-            int compareResult = x.compareTo(node.element );
+            int compareResult = item.compareTo(node.element);
 
             if( compareResult < 0 )
                 node = node.left;
