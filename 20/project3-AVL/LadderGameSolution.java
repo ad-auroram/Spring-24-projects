@@ -199,8 +199,8 @@ public class LadderGameSolution {
      * Notice that the main program just sets up the problem.  All the code to solve the problem is outside of main.
      */
     public static void main(String[] args) {
-        String[] source = {"kiss", "cock", "jura", "stet", "rums",  "ride"};
-        String[] dest = {"woof", "numb", "such", "whey", "numb", "ands"};
+        String[] source = {"kiss", "cock", "jura", "stet", "rums",  "ride", "hooks"};
+        String[] dest = {"woof", "numb", "such", "whey", "numb", "ands", "stunk"};
 
         // This organization allows the dictionary to be read in only once.
         LadderGameSolution g = new LadderGameSolution("dictionary.txt");
