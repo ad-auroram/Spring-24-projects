@@ -1,8 +1,5 @@
-import java.util.Arrays;
-import java.util.Scanner;
-        import java.util.Random;
-        import java.io.File;
-        import java.util.ArrayList;
+import java.util.*;
+import java.io.File;
 
 /**
  * This class holds all of the functions needed for the ladder game to run successfully.
@@ -127,6 +124,7 @@ public class LadderGameSolution {
     }
 
     public void findLadderA(String a, String b, ArrayList list){
+        Dictionary<String, Integer> position= new Hashtable<>();
         System.out.println("Seeking an A* solution from " + a + " -> " + b + " Size of List " + list.size());
         int totalEnqueue = 0;
         LadderInfo start = new LadderInfo(a, 0, a, 1+a.toCharArray().length);
@@ -160,14 +158,18 @@ public class LadderGameSolution {
                             String[] split = currLadder.ladder().split(" ");
                             int priority = split.length+cost ;
                             LadderInfo step = new LadderInfo(next, split.length, currLadder.ladder() + " " + next, priority);
+                            if (position.isEmpty() || position.get(next)==null || position.get(next) < split.length+1){
+                                position.put(next, split.length + 1);
+                                totalEnqueue++;
+                                solutionTree.insert(step);
+                            }
                             if (next.equals(b)) {
                                 String result = step.toString();
                                 System.out.println("Solution found!");
                                 System.out.printf("Moves: %d   Ladder: %s  Total enqueues: %d \n", step.moves, result, totalEnqueue);
                                 done = true;
                             }
-                            totalEnqueue++;
-                            solutionTree.insert(step);
+
                         }
                     }
                 }
