@@ -14,7 +14,7 @@
 // void printTree( )      --> Print tree in sorted order
 // ******************ERRORS********************************
 // Throws UnderflowException as appropriate
-//NOTE: GO OVER COMMENTS LATER AND MAKE THEM BETTER!!!!
+
 /**
  * Implements an AVL tree.
  * Note that all "matching" is based on the compareTo method.
@@ -86,7 +86,7 @@ public class AVLTree<AnyType extends Comparable<? super AnyType>> {
 
     /**
      * Find the largest item in the tree.
-     * @return the largest item of null if empty.
+     * @return the largest item or null if empty.
      */
     public AnyType findMax( ){
         if(isEmpty( ) )
@@ -97,7 +97,7 @@ public class AVLTree<AnyType extends Comparable<? super AnyType>> {
     /**
      * Find an item in the tree.
      * @param item the item to search for.
-     * @return true if x is found.
+     * @return true if item is found.
      */
     public boolean contains( AnyType item ) {
         return contains(item, root );
