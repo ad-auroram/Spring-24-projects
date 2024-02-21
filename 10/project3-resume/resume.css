@@ -2,8 +2,37 @@ html {
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
+body{
+    background-color: rgb(255, 238, 232);
+    color: rgb(69, 53, 59);
+    
+}
+
 #header{
+    padding: 15px;
     background-image: url(https://images.unsplash.com/photo-1517210122415-b0c70b2a09bf?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
     background-size: cover;
     background-attachment: fixed;
+}
+
+#edu-header{
+    font-weight: bold;
+    font-style: italic;
+    align-content: center;
+}
+
+#education{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+
+.edu-block{
+    color: rgb(69, 53, 59);
+    background-color: rgb(254, 191, 160);
+    padding: 5em;   
+    margin: 1em;
+    border: 3px solid rgb(69, 53, 59);
 }
