@@ -24,10 +24,6 @@ body{
     background-attachment: fixed;
 }
 
-.fa-solid-fa-dice-d20{
-    text-align: center;
-}
-
 .section-header{
     margin-top: 2em;
     font-weight: bold;
@@ -65,34 +61,34 @@ body{
 
 
 #work1{
-    background-image: url(dice.png);
+    background-image: url(./edu-pics/dice.png);
     background-position: bottom center;
     background-size: 100%;
     background-repeat: no-repeat;
 }
 
 #work2{
-    background-image: url(guitar.png);
+    background-image: url(./edu-pics/guitar.png);
     background-position: bottom center;
     background-size: 100%;
     background-repeat: no-repeat
 }
 
 #work3{
-    background-image: url(farm.jpg);
+    background-image: url(./edu-pics/farm.jpg);
     background-position: bottom center;
     background-size: 100%;
     background-repeat: no-repeat
 }
 
 #work4{
-    background-image: url(guardian.png);
+    background-image: url(./edu-pics/guardian.png);
     background-position: bottom center;
     background-size: 100%;
     background-repeat: no-repeat
 }
 #work5{
-    background-image: url(store.jpg);
+    background-image: url(./edu-pics/store.jpg);
     background-position: bottom center;
     background-size: 100%;
     background-repeat: no-repeat
