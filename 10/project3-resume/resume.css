@@ -57,18 +57,47 @@ body{
     color: rgb(69, 53, 59);
     background-color: rgb(254, 191, 160);
     width: 175px; 
-    padding: 0em 2em;
+    padding: 0em 2em 3em 2em;
     margin: 2em;
     border-radius: 15px;
     border: 3px solid rgb(69, 53, 59);   
 }
 
+
 #work1{
     background-image: url(dice.png);
     background-position: bottom center;
     background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#work2{
+    background-image: url(guitar.png);
+    background-position: bottom center;
+    background-size: 100%;
     background-repeat: no-repeat
 }
+
+#work3{
+    background-image: url(farm.jpg);
+    background-position: bottom center;
+    background-size: 100%;
+    background-repeat: no-repeat
+}
+
+#work4{
+    background-image: url(guardian.png);
+    background-position: bottom center;
+    background-size: 100%;
+    background-repeat: no-repeat
+}
+#work5{
+    background-image: url(store.jpg);
+    background-position: bottom center;
+    background-size: 100%;
+    background-repeat: no-repeat
+}
+
 
 .tech-block{
     color: rgb(69, 53, 59);
