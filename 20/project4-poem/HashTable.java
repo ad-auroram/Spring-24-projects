@@ -10,6 +10,9 @@
 // void makeEmpty( )      --> Remove all items
 
 
+import java.io.File;
+import java.util.Scanner;
+
 /**
  * Probing table implementation of hash tables.
  * Note that all "matching" is based on the equals method.
@@ -39,16 +42,16 @@ public class HashTable<E>
      * Insert into the hash table. If the item is
      * already present, do nothing.
      * Implementation issue: This routine doesn't allow you to use a lazily deleted location.  Do you see why?
-     * @param x the item to insert.
+     * @param item the item to insert.
      */
-    public boolean insert( E x )
+    public boolean insert( E item )
     {
         // Insert x as active
-        int currentPos = findPos( x );
+        int currentPos = findPos( item );
         if( isActive( currentPos ) )
             return false;
 
-        array[ currentPos ] = new HashEntry<>( x, true );
+        array[ currentPos ] = new HashEntry<>( item, true );
         currentActiveEntries++;
 
         // Rehash; see Section 5.5
@@ -90,17 +93,17 @@ public class HashTable<E>
 
     /**
      * Method that performs quadratic probing resolution.
-     * @param x the item to search for.
+     * @param item the item to search for.
      * @return the position where the search terminates.
      * Never returns an inactive location.
      */
-    private int findPos( E x )
+    private int findPos( E item )
     {
         int offset = 1;
-        int currentPos = myhash( x );
+        int currentPos = myhash( item );
 
         while( array[ currentPos ] != null &&
-                !array[ currentPos ].element.equals( x ) )
+                !array[ currentPos ].element.equals( item ) )
         {
             currentPos += offset;  // Compute ith probe
             offset += 2;
@@ -113,12 +116,12 @@ public class HashTable<E>
 
     /**
      * Remove from the hash table.
-     * @param x the item to remove.
+     * @param item the item to remove.
      * @return true if item removed
      */
-    public boolean remove( E x )
+    public boolean remove( E item )
     {
-        int currentPos = findPos( x );
+        int currentPos = findPos( item );
         if( isActive( currentPos ) )
         {
             array[ currentPos ].isActive = false;
@@ -149,23 +152,23 @@ public class HashTable<E>
 
     /**
      * Find an item in the hash table.
-     * @param x the item to search for.
+     * @param item the item to search for.
      * @return true if item is found
      */
-    public boolean contains( E x )
+    public boolean contains( E item )
     {
-        int currentPos = findPos( x );
+        int currentPos = findPos( item );
         return isActive( currentPos );
     }
 
     /**
      * Find an item in the hash table.
-     * @param x the item to search for.
+     * @param item the item to search for.
      * @return the matching item.
      */
-    public E find( E x )
+    public E find( E item )
     {
-        int currentPos = findPos( x );
+        int currentPos = findPos( item );
         if (!isActive( currentPos )) {
             return null;
         }
@@ -199,9 +202,9 @@ public class HashTable<E>
             array[ i ] = null;
     }
 
-    private int myhash( E x )
+    private int myhash( E item )
     {
-        int hashVal = x.hashCode( );
+        int hashVal = item.hashCode( );
 
         hashVal %= array.length;
         if( hashVal < 0 )
@@ -244,37 +247,37 @@ public class HashTable<E>
 
     /**
      * Internal method to find a prime number at least as large as n.
-     * @param n the starting number (must be positive).
+     * @param num the starting number (must be positive).
      * @return a prime number larger than or equal to n.
      *
      */
-    private static int nextPrime( int n )
+    private static int nextPrime( int num )
     {
-        if( n % 2 == 0 )
-            n++;
+        if( num % 2 == 0 )
+            num++;
 
-        for( ; !isPrime( n ); n += 2 )
+        for( ; !isPrime( num ); num += 2 )
             ;
 
-        return n;
+        return num;
     }
 
     /**
      * Internal method to test if a number is prime.
      * Not an efficient algorithm.
-     * @param n the number to test.
+     * @param num the number to test.
      * @return the result of the test.
      */
-    private static boolean isPrime( int n )
+    private static boolean isPrime( int num )
     {
-        if( n == 2 || n == 3 )
+        if( num == 2 || num == 3 )
             return true;
 
-        if( n == 1 || n % 2 == 0 )
+        if( num == 1 || num % 2 == 0 )
             return false;
 
-        for( int i = 3; i * i <= n; i += 2 )
-            if( n % i == 0 )
+        for( int i = 3; i * i <= num; i += 2 )
+            if( num % i == 0 )
                 return false;
 
         return true;
@@ -284,7 +287,34 @@ public class HashTable<E>
     // Simple main
     public static void main( String [ ] args ) {
         HashTable<String> H = new HashTable<>();
-// Add your test code here.
+        // Add your test code here.
+        File file = new File("green.txt");
+        try {
+            Scanner reader = new Scanner(file);
+            while (reader.hasNext()) {
+                String word = reader.next();
+                word = word.toLowerCase();
+                if(!H.contains(word)) {
+                    H.insert(word);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(H.contains("green"));
+        System.out.println(H.contains("sam"));
+        System.out.println(H.contains("?"));
+        System.out.println(H.contains("aaa"));
+        System.out.println();
+        System.out.println(H.toString(25));
+        System.out.println();
+        H.remove("green");
+        H.remove("eggs");
+        H.remove("bacon");
+        System.out.println();
+        System.out.println(H.toString(25));
+
+
     }
 }
 
