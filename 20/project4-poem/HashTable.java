@@ -19,7 +19,7 @@ import java.util.Scanner;
  * Note that all "matching" is based on the equals method.
  * @author Mark Allen Weiss
  */
-public class HashTable<E>
+public class HashTable<E, K>
 {
     /**
      * Construct the hash table.
@@ -45,13 +45,13 @@ public class HashTable<E>
      * Implementation issue: This routine doesn't allow you to use a lazily deleted location.  Do you see why?
      * @param item the item to insert.
      */
-    public boolean insert(E key, E item)
+    public boolean insert(E key, K item)
     {
         // Insert x as active
         int currentPos = findPos( key );
         if( isActive( currentPos ) )
             return false;
-        ArrayList<E> entry = new ArrayList<>(2);
+        ArrayList<Object> entry = new ArrayList<>(2);
         entry.add(key);
         entry.add(item);
         array[ currentPos ] = (HashEntry<E>) new HashEntry<>(entry, true );
@@ -91,8 +91,8 @@ public class HashTable<E>
         // Copy table over
         for (HashEntry<E> entry : oldArray) {
             if (entry != null && entry.isActive) {
-                ArrayList<E> elements = (ArrayList<E>) entry.element;
-                insert(elements.get(0), elements.get(1));
+                ArrayList<Object> elements = (ArrayList<Object>) entry.element;
+                insert( (E)elements.get(0), (K)elements.get(1));
             }
         }
     }
@@ -107,7 +107,7 @@ public class HashTable<E>
         int offset = 1;
         int currentPos = myhash(key);
         while (array[currentPos] != null) {
-            ArrayList<E> element = (ArrayList<E>) array[currentPos].element;
+            ArrayList<Object> element = (ArrayList<Object>) array[currentPos].element;
             if (element != null && element.get(0).equals(key)) {
                 return currentPos; // Found the key, return the current position
             }
@@ -292,7 +292,7 @@ public class HashTable<E>
 
     // Simple main
     public static void main( String [ ] args ) {
-        HashTable<String> H = new HashTable<>();
+        HashTable<String, String> H = new HashTable<>();
         // Add your test code here.
         File file = new File("green.txt");
         try {
