@@ -11,6 +11,7 @@
 
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -44,14 +45,16 @@ public class HashTable<E>
      * Implementation issue: This routine doesn't allow you to use a lazily deleted location.  Do you see why?
      * @param item the item to insert.
      */
-    public boolean insert( E item )
+    public boolean insert(E key, E item)
     {
         // Insert x as active
-        int currentPos = findPos( item );
+        int currentPos = findPos( key );
         if( isActive( currentPos ) )
             return false;
-
-        array[ currentPos ] = new HashEntry<>( item, true );
+        ArrayList<E> entry = new ArrayList<>(2);
+        entry.add(key);
+        entry.add(item);
+        array[ currentPos ] = (HashEntry<E>) new HashEntry<>(entry, true );
         currentActiveEntries++;
 
         // Rehash; see Section 5.5
@@ -86,31 +89,34 @@ public class HashTable<E>
         currentActiveEntries = 0;
 
         // Copy table over
-        for( HashEntry<E> entry : oldArray )
-            if( entry != null && entry.isActive )
-                insert( entry.element );
+        for (HashEntry<E> entry : oldArray) {
+            if (entry != null && entry.isActive) {
+                ArrayList<E> elements = (ArrayList<E>) entry.element;
+                insert(elements.get(0), elements.get(1));
+            }
+        }
     }
 
     /**
      * Method that performs quadratic probing resolution.
-     * @param item the item to search for.
+     * @param key the item to search for.
      * @return the position where the search terminates.
      * Never returns an inactive location.
      */
-    private int findPos( E item )
-    {
+    private int findPos( E key ) {
         int offset = 1;
-        int currentPos = myhash( item );
-
-        while( array[ currentPos ] != null &&
-                !array[ currentPos ].element.equals( item ) )
-        {
-            currentPos += offset;  // Compute ith probe
+        int currentPos = myhash(key);
+        while (array[currentPos] != null) {
+            ArrayList<E> element = (ArrayList<E>) array[currentPos].element;
+            if (element != null && element.get(0).equals(key)) {
+                return currentPos; // Found the key, return the current position
+            }
+            currentPos += offset; // Compute ith probe
             offset += 2;
-            if( currentPos >= array.length )
+            if (currentPos >= array.length) {
                 currentPos -= array.length;
+            }
         }
-
         return currentPos;
     }
 
@@ -295,7 +301,7 @@ public class HashTable<E>
                 String word = reader.next();
                 word = word.toLowerCase();
                 if(!H.contains(word)) {
-                    H.insert(word);
+                    H.insert(word, "e");
                 }
             }
         } catch (Exception e) {
