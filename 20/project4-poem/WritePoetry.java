@@ -27,9 +27,7 @@ public class WritePoetry {
             while (reader.hasNext()) {
                 String word = reader.next();
                 word = word.toLowerCase();
-                if (!words.contains(word)){
-                    words.add(word);
-                }
+                words.add(word);
             }
         } catch (Exception e){
             e.printStackTrace();
