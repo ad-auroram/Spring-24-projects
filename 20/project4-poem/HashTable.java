@@ -11,6 +11,7 @@
 
 
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -173,14 +174,17 @@ public class HashTable<E, K>
      * @param item the item to search for.
      * @return the matching item.
      */
-    public E find( E item )
+    public ArrayList<Object> find(E item )
     {
         int currentPos = findPos( item );
         if (!isActive( currentPos )) {
             return null;
         }
         else {
-            return array[currentPos].element;
+            ArrayList<Object> element = new ArrayList<>();
+            element.add(array[currentPos].element);
+            element = (ArrayList<Object>) element.get(0);
+            return element;
         }
     }
 
@@ -304,7 +308,7 @@ public class HashTable<E, K>
 
 
     // Simple main
-    public static void main( String [ ] args ) {
+    public static void main(String[] args) {
         HashTable<String, String> H = new HashTable<>();
         // Add your test code here.
         File file = new File("green.txt");
@@ -332,7 +336,12 @@ public class HashTable<E, K>
         H.remove("bacon");
         System.out.println();
         System.out.println(H.toString(25));
+        System.out.println();
 
+        ArrayList<Object> info = H.find("sam");
+        System.out.println(info);
+        System.out.println(info.get(0));
+        System.out.println(info.get(1));
 
     }
 }

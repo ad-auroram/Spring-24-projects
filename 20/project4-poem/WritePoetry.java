@@ -1,5 +1,6 @@
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class WritePoetry {
@@ -12,16 +13,29 @@ public class WritePoetry {
     }
 
     public void writePoem(String startWord, int i, boolean b) {
-        readPoem();
-        /*
-        for (int j=0; j<i; j++){
-            System.out.println(startWord);
-        }
-         */
         System.out.println(startWord+" poem, length: "+i+" printing table?: "+b);
+        ArrayList <String> punctuation = new ArrayList<>(Arrays.asList(".",",","?","!"));
+        readPoem();
+        System.out.print(startWord);
+        String currWord = startWord;
+        int count = 1;
+        while (count<=20 && !punctuation.contains(currWord)){
+            String nextWord = pickNextWord(currWord);
+            if (punctuation.contains(nextWord)){
+                System.out.println(nextWord);
+            }else{
+                System.out.print(nextWord);
+            }
+            currWord=nextWord;
+        }
+
+        System.out.println();
+        if (b) System.out.println(hash.toString(100));
     }
 
     private String pickNextWord(String word){
+
+        System.out.println(hash.find(word));
         return word;
     }
 
@@ -55,6 +69,5 @@ public class WritePoetry {
             }
 
         }
-        System.out.println(hash.toString(50));
     }
 }
