@@ -9,7 +9,7 @@ public static void main(String[] args) {
     boolean printTable []= {true,true,false,true};
     for (int i = 0; i < 4; i++) {
         WritePoetry poem = new WritePoetry(files[i]);
-        System.out.println(poem.writePoem(startWords[i], poemLength[i], printTable[i]));
+        poem.writePoem(startWords[i], poemLength[i], printTable[i]);
     }
 }
 

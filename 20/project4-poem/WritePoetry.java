@@ -11,14 +11,14 @@ public class WritePoetry {
         this.hash = new HashTable<>();
     }
 
-    public String writePoem(String startWord, int i, boolean b) {
+    public void writePoem(String startWord, int i, boolean b) {
         readPoem();
         /*
         for (int j=0; j<i; j++){
             System.out.println(startWord);
         }
          */
-        return startWord+" poem, length: "+i+" printing table?: "+b;
+        System.out.println(startWord+" poem, length: "+i+" printing table?: "+b);
     }
 
     private String pickNextWord(String word){
@@ -40,13 +40,20 @@ public class WritePoetry {
         }
         for (String word : words) {
             int count = 0;
-            for (String w : words) {
-                if (word.equals(w)) count += 1;
+            WordFreqInfo info = new WordFreqInfo(word, count);
+            for (int i=0; i<words.size(); i++) {
+                if (word.equals(words.get(i))) {
+                    count += 1;
+                    if (!(i == words.size() - 1)) {
+                        info.updateFollows(words.get(i + 1));
+                    }
+                }
             }
+            info.occurCt=count;
             if (!hash.contains(word)) {
-                WordFreqInfo info = new WordFreqInfo(word, count);
                 hash.insert(word, info);
             }
+
         }
         System.out.println(hash.toString(50));
     }
