@@ -103,8 +103,9 @@ public class HashTable<E, K>
      * @return the position where the search terminates.
      * Never returns an inactive location.
      */
+    //implement double hashing here
     private int findPos( E key ) {
-        int offset = 1;
+        int offset = myHash2(key);
         int currentPos = myhash(key);
         while (array[currentPos] != null) {
             ArrayList<Object> element = (ArrayList<Object>) array[currentPos].element;
@@ -112,7 +113,7 @@ public class HashTable<E, K>
                 return currentPos; // Found the key, return the current position
             }
             currentPos += offset; // Compute ith probe
-            offset += 2;
+            //offset += 2;
             if (currentPos >= array.length) {
                 currentPos -= array.length;
             }
@@ -217,6 +218,18 @@ public class HashTable<E, K>
             hashVal += array.length;
 
         return hashVal;
+    }
+
+    private int myHash2(E item){
+        String var = (String) item;
+        char[] myChars = var.toCharArray();
+        int val = 0;
+        for (int i = 0; i < myChars.length; i++) {
+            int x = myChars[i];
+            val += x;
+        }
+        int step = 11-(val%11);
+        return step;
     }
 
     private static class HashEntry<E>
