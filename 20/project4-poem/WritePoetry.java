@@ -1,6 +1,7 @@
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class WritePoetry {
@@ -13,30 +14,50 @@ public class WritePoetry {
     }
 
     public void writePoem(String startWord, int i, boolean b) {
-        System.out.println(startWord+" poem, length: "+i+" printing table?: "+b);
         ArrayList <String> punctuation = new ArrayList<>(Arrays.asList(".",",","?","!"));
         readPoem();
-        System.out.print(startWord);
+        System.out.print(startWord+ " ");
         String currWord = startWord;
         int count = 1;
-        while (count<=20 && !punctuation.contains(currWord)){
+        while (true){
             String nextWord = pickNextWord(currWord);
             if (punctuation.contains(nextWord)){
                 System.out.println(nextWord);
             }else{
-                System.out.print(nextWord);
+                System.out.print(nextWord+ " ");
             }
             currWord=nextWord;
+            count+=1;
+            if (punctuation.contains(currWord) && count > i){
+                break;
+            }
         }
 
         System.out.println();
         if (b) System.out.println(hash.toString(100));
     }
 
-    private String pickNextWord(String word){
+    private String pickNextWord(String word) {
+        ArrayList<Object> entry = hash.find(word);
+        WordFreqInfo info = (WordFreqInfo) entry.get(1);
+        int count = info.occurCt;
 
-        System.out.println(hash.find(word));
-        return word;
+        Random rand = new Random();
+        int randInt = rand.nextInt(count + 1);
+
+        int pick = 0;
+        ArrayList<WordFreqInfo.Freq> freq = info.followList;
+
+        String nextWord = word;
+        for (int i = 0; i < freq.size(); i++) {
+            int add = freq.get(i).followCt;
+            pick += add;
+            if (pick >= randInt) {
+                nextWord = freq.get(i).follow;
+                break;
+            }
+        }
+        return nextWord;
     }
 
     public void readPoem(){
