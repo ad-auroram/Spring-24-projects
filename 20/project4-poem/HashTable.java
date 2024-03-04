@@ -12,6 +12,7 @@
 
 import java.io.File;
 import java.lang.reflect.Array;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -324,15 +325,17 @@ public class HashTable<E, K>
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(H.contains("green"));
-        System.out.println(H.contains("sam"));
-        System.out.println(H.contains("?"));
-        System.out.println(H.contains("aaa"));
+        System.out.println("Contains 'green'? " + H.contains("green"));
+        System.out.println("Contains 'sam'? " + H.contains("sam"));
+        System.out.println("Contains '?'? " + H.contains("?"));
+        System.out.println("Contains 'aaa'? " + H.contains("aaa"));
         System.out.println();
         System.out.println(H.toString(25));
         System.out.println();
+        System.out.println("Deleting green, eggs.");
         H.remove("green");
         H.remove("eggs");
+        System.out.println("Deleting bacon.");
         H.remove("bacon");
         System.out.println();
         System.out.println(H.toString(25));
