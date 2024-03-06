@@ -6,23 +6,28 @@
     </head>
     <body>
         <header>
-            <h1>Test</h1>
+            <h1 style="font-size:40px;">Recipe Card Builder</h1>
         </header>
         <main>
             <input id="title" type="text" placeholder="Recipe Title" aria-label="Recipe Title" />
             <section id="ingredients">
-                <input id="ingredients-inpt" type="text" placeholder="Add Ingredient" aria-label="ingredient input" />
-                <button id="add-ingredients">Add</button>
-                <div id="list1">
-
+                <input class="input" type="text" placeholder="Add Ingredient" aria-label="ingredient input" />
+                <button class="add-button">Add</button>
+                <div class="list">
+                    
                 </div>
             </section>
             <section id="instructions">
-                <input id="instruct-inpt" type="text" placeholder="Add Instructions" aria-label="instruction input" />
-                <button id="add-instructions">Add</button>
-                <div id="list2">
+                <input class="input" type="text" placeholder="Add Instructions" aria-label="instruction input" />
+                <button class="add-button">Add</button>
+                <div class="list">
+                    
                 </div>
             </section>
+            <div id="options">
+                <button id="reset">Reset</button>
+                <button id="save">Save</button>
+            </div>
         </main>
     </body>
 </html>
