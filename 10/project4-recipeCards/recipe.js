@@ -31,7 +31,7 @@ ingredients.addEventListener("keypress", (e) => {
 function createIngrItem(){
     const ingredient = ingredients.value;
     const ingrElement = `
-    <span class="item">${ingredient}</span>`;
+    <span class="item" role="button" tabindex="0">${ingredient}</span>`;
     document.getElementById("ingredients").innerHTML += ingrElement;
     items.push(ingrElement)
     ingredients.value="";
@@ -42,13 +42,13 @@ function createIngrItem(){
 addInst.addEventListener("click", createInstItem)
 instructions.addEventListener("keypress", (e) => {
     if (e.code === "Enter") {
-        createIngrItem();
+        createInstItem();
     }
 });
 function createInstItem(){
     const instruction = instructions.value;
     const instElement = `
-    <span class="item">${instruction}</span>`;
+    <span class="item" role="button" tabindex="0">${instruction}</span>`;
     document.getElementById("instructions").innerHTML += instElement;
     steps.push(instElement);
     instructions.value="";
@@ -72,5 +72,3 @@ save.addEventListener("click", () => {
     }
     writeRecipeToFile(recipe);
 })
-
-
