@@ -20,25 +20,39 @@ let steps = [];
 const reset = document.getElementById("reset");
 const save = document.getElementById("save");
 
+
+addIngr.addEventListener("click", createIngrItem);
+ingredients.addEventListener("keypress", (e) => {
+    if (e.code === "Enter") {
+        createIngrItem();
+    }
+});
 //creates a list of ingredients
-addIngr.addEventListener("click", ()=>{
+function createIngrItem(){
     const ingredient = ingredients.value;
     const ingrElement = `
     <span class="item">${ingredient}</span>`;
     document.getElementById("ingredients").innerHTML += ingrElement;
     items.push(ingrElement)
     ingredients.value="";
-})
+}
+
 
 //creates list of instuctions
-addInst.addEventListener("click", ()=>{
+addInst.addEventListener("click", createInstItem)
+instructions.addEventListener("keypress", (e) => {
+    if (e.code === "Enter") {
+        createIngrItem();
+    }
+});
+function createInstItem(){
     const instruction = instructions.value;
     const instElement = `
     <span class="item">${instruction}</span>`;
     document.getElementById("instructions").innerHTML += instElement;
     steps.push(instElement);
     instructions.value="";
-})
+}
 
 
 //reset
