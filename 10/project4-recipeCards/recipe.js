@@ -8,7 +8,55 @@
 */
 
 //buttons and input
-const title = document.getElementById("title");
+const title = document.getElementById("title").value;
 const ingredients = document.getElementById("ingr-inpt");
+const addIngr = document.getElementById("ingr-button");
 const instructions = document.getElementById("inst-inpt");
+const addInst = document.getElementById("inst-button");
+let items = [];
+let steps = [];
+
+
+const reset = document.getElementById("reset");
+const save = document.getElementById("save");
+
+//creates a list of ingredients
+addIngr.addEventListener("click", ()=>{
+    const ingredient = ingredients.value;
+    const ingrElement = `
+    <span class="item">${ingredient}</span>`;
+    document.getElementById("ingredients").innerHTML += ingrElement;
+    items.push(ingrElement)
+    ingredients.value="";
+})
+
+//creates list of instuctions
+addInst.addEventListener("click", ()=>{
+    const instruction = instructions.value;
+    const instElement = `
+    <span class="item">${instruction}</span>`;
+    document.getElementById("instructions").innerHTML += instElement;
+    steps.push(instElement);
+    instructions.value="";
+})
+
+
+//reset
+reset.addEventListener("click", () =>{
+    document.getElementById("ingredients").innerHTML = "";
+    document.getElementById("instructions").innerHTML = "";
+    ingredients.value="";
+    instructions.value="";
+    title.value="";
+})
+
+save.addEventListener("click", () => {
+    const recipe = {
+        title: `${title}`,
+        ingredients: items,
+        instructions: steps
+    }
+    writeRecipeToFile(recipe);
+})
+
 

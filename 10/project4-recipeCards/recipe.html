@@ -2,6 +2,7 @@
     <head>
         <link rel="stylesheet" href="recipe.css" />
         <script src="recipe.js" defer></script>
+        <script src="writeRecipeToFile.js" defer></script>
         <title>Recipe Builder</title>
     </head>
     <body>
@@ -12,20 +13,20 @@
             <input id="title" type="text" placeholder="Recipe Title" aria-label="Recipe Title" />
             <section>
                 <input id = "ingr-inpt" class="input" type="text" placeholder="Add Ingredient" aria-label="ingredient input" />
-                <button class="add-button">Add</button>
+                <button id = "ingr-button" class="add-button">Add</button>
                 <div class="list" id="ingredients">
                 </div>
             </section>
             <section>
                 <input id="inst-inpt" class="input" type="text" placeholder="Add Instructions" aria-label="instruction input" />
-                <button class="add-button">Add</button>
+                <button id= "inst-button" class="add-button">Add</button>
                 <div class="list" id="instructions">
                 </div>
             </section>
-            <div id="options">
+            <section id="options">
                 <button id="reset">Reset</button>
                 <button id="save">Save</button>
-            </div>
+            </section>
         </main>
     </body>
 </html>

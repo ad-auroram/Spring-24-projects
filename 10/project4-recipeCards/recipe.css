@@ -59,6 +59,25 @@ h1{
     padding: 20px;
 }
 
+.list{
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+.item{
+    font-size: 20px;
+    padding: 5px;
+    margin: 10px;
+    width: auto;
+    height: 25px;
+    border: 2px solid rgb(40, 32, 29);
+    background-color: rgb(251, 184, 193);
+    color:rgb(40, 32, 29);
+    border-radius: 15px;
+}
+
 #options {
     margin:auto;
     margin-top: 20px;
