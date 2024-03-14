@@ -8,7 +8,7 @@
 */
 
 //buttons and input
-const title = document.getElementById("title").value;
+const title = document.getElementById("title");
 const ingredients = document.getElementById("ingr-inpt");
 const addIngr = document.getElementById("ingr-button");
 const instructions = document.getElementById("inst-inpt");
@@ -62,11 +62,13 @@ reset.addEventListener("click", () =>{
     ingredients.value="";
     instructions.value="";
     title.value="";
+    items = [];
+    steps = [];
 })
 
 save.addEventListener("click", () => {
     const recipe = {
-        title: `${title}`,
+        title: `${title.value}`,
         ingredients: items,
         instructions: steps
     }
