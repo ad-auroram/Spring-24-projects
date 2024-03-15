@@ -30,10 +30,8 @@ ingredients.addEventListener("keypress", (e) => {
 //creates a list of ingredients
 function createIngrItem(){
     const ingredient = ingredients.value;
-    const ingrElement = `
-    <span class="item" role="button" tabindex="0">${ingredient}</span>`;
-    document.getElementById("ingredients").innerHTML += ingrElement;
-    items.push(ingrElement)
+    createItem(ingredient, "ingredients");
+    items.push(ingredient);
     ingredients.value="";
 }
 
@@ -45,13 +43,39 @@ instructions.addEventListener("keypress", (e) => {
         createInstItem();
     }
 });
+
 function createInstItem(){
     const instruction = instructions.value;
-    const instElement = `
-    <span class="item" role="button" tabindex="0">${instruction}</span>`;
-    document.getElementById("instructions").innerHTML += instElement;
-    steps.push(instElement);
+    createItem(instruction, "instructions")
+    steps.push(instruction);
     instructions.value="";
+}
+
+function createItem(item, section){
+    if (item === ""){
+        error("Field cannot be blank!")
+        return;
+    }
+    const element = document.createElement("span");
+    element.className = "item";
+    element.role = "button";
+    element.tabIndex= "0";
+    element.innerText= item;
+    element.addEventListener("click", () => {
+        element.remove();
+        if (items.includes(element.innerText)){
+            items.pop(element.innerText);
+        }
+        if (steps.includes(element.innerText)){
+            steps.pop(element.innerText);
+        }
+    });
+    document.getElementById(section).appendChild(element);
+
+}
+
+function error(message){
+
 }
 
 
