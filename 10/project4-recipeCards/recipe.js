@@ -62,14 +62,15 @@ function createItem(item, section){
     element.tabIndex= "0";
     element.innerText= item;
     element.addEventListener("click", () => {
+        deleteItem(item);
         element.remove();
-        if (items.includes(element.innerText)){
-            items.pop(element.innerText);
-        }
-        if (steps.includes(element.innerText)){
-            steps.pop(element.innerText);
-        }
     });
+    element.addEventListener("keypress", (e) =>{
+        if (e.code=== "Space"){
+            deleteItem(item);
+            element.remove();
+        }
+    })
     document.getElementById(section).appendChild(element);
 
 }
@@ -82,6 +83,17 @@ function error(message){
         error.dataset.open = false;
         error.innerHTML = "";
     }, 5000);
+}
+
+function deleteItem(item){
+    if (items.includes(item)){
+        index = items.indexOf(item);
+        items=items.slice(0,index).concat(items.slice(index+1))
+    }
+    if (steps.includes(item)){
+        index = steps.indexOf(item);
+        steps=steps.slice(0,index).concat(steps.slice(index+1))
+    }
 }
 
 
