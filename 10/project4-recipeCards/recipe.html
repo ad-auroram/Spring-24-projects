@@ -11,16 +11,16 @@
         </header>
         <main>
             <input id="title" type="text" placeholder="Recipe Title" aria-label="Recipe Title" />
-            <section>
-                <input id = "ingr-inpt" class="input" type="text" placeholder="Add Ingredient" aria-label="ingredient input" />
+            <section >
+                <input id = "ingr-inpt" class="input" type="text" placeholder="Add Ingredient" aria-label="ingredient input" aria-description="Press enter or click the add button to add an ingredient." />
                 <button id = "ingr-button" class="add-button">Add</button>
-                <div class="list" id="ingredients">
+                <div class="list" id="ingredients" aria-description = "Press space to delete ingredient items.">
                 </div>
             </section>
             <section>
-                <input id="inst-inpt" class="input" type="text" placeholder="Add Instructions" aria-label="instruction input" />
+                <input id="inst-inpt" class="input" type="text" placeholder="Add Instructions" aria-label="instruction input" aria-description="Press enter or click the add button to add an ingredient."/>
                 <button id= "inst-button" class="add-button">Add</button>
-                <div class="list" id="instructions">
+                <div class="list" id="instructions" aria-description="Press space to delete instruction items.">
                 </div>
             </section>
             <section id="options">

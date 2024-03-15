@@ -60,6 +60,8 @@ function createItem(item, section){
     element.className = "item";
     element.role = "button";
     element.tabIndex= "0";
+    element.ariaLabel= `${item}`;
+    element.ariaDescription= "Press space to delete item."
     element.innerText= item;
     element.addEventListener("click", () => {
         deleteItem(item);
