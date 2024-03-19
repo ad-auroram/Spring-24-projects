@@ -11,10 +11,11 @@ public class TestSched {
         Scanner reader = new Scanner(taskList);
         int n=1;
         while (reader.hasNext()){
-            String[] taskInfo = reader.next().split(" ");
-            int start = Integer.parseInt(taskInfo[0]);
-            int deadline = Integer.parseInt(taskInfo[1]);
-            int duration = Integer.parseInt(taskInfo[2]);
+            String info = reader.nextLine().replaceAll("\\s", "");
+            char[] taskInfo = info.toCharArray();
+            int start = taskInfo[0]-'0';
+            int deadline = taskInfo[1]-'0';
+            int duration = taskInfo[2]-'0';
 
             Task1 one = new Task1(n, start, deadline, duration);
             Task2 two = new Task2(n, start, deadline, duration);
