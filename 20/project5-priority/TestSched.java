@@ -5,14 +5,29 @@ import java.util.*;
 public class TestSched {
 
 
-    public static void readTasks(String filename,
-                          ArrayList<Task> task1, ArrayList<Task> task2,
-                                 ArrayList<Task> task3) {
+    public static void readTasks(String filename, ArrayList<Task> task1, ArrayList<Task> task2, ArrayList<Task> task3) throws FileNotFoundException {
         // Create lists where base type is different
+        File taskList = new File(filename);
+        Scanner reader = new Scanner(taskList);
+        int n=1;
+        while (reader.hasNext()){
+            String[] taskInfo = reader.next().split(" ");
+            int start = Integer.parseInt(taskInfo[0]);
+            int deadline = Integer.parseInt(taskInfo[1]);
+            int duration = Integer.parseInt(taskInfo[2]);
 
+            Task1 one = new Task1(n, start, deadline, duration);
+            Task2 two = new Task2(n, start, deadline, duration);
+            Task3 three = new Task3(n, start, deadline, duration);
+
+            task1.add(one);
+            task2.add(two);
+            task3.add(three);
+            n++;
+        }
     }
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws FileNotFoundException {
         Scheduler s = new Scheduler();
         String [] files = {"taskset1.txt","taskset2.txt","taskset3.txt","taskset4.txt","taskset5.txt" };
         for (String f : files) {
