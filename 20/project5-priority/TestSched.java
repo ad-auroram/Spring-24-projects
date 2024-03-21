@@ -40,8 +40,11 @@ public class TestSched {
             ArrayList<Task> t3 = new ArrayList();    // elements are Task3
             readTasks(f, t1, t2, t3);
             s.makeSchedule("Deadline Priority "+ f, t1);
+            System.out.println();
             s.makeSchedule("Startime Priority " + f, t2);
+            System.out.println();
             s.makeSchedule("Wild and Crazy priority " + f, t3);
+            System.out.println();
        }
 
     }
