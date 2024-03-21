@@ -35,6 +35,7 @@ public class Scheduler {
                 System.out.println();
                 scheduler.insert(currTask);
             }
+            //check if we're done scheduling
             if (scheduler.isEmpty()) {
                 System.out.printf("Tasks late: %d.  Total minutes late: %d", late, lateMins);
                 System.out.println();
