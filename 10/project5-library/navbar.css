@@ -1,0 +1,33 @@
+
+
+#nav-example{
+    display:flex;
+    background-color: rgb(202, 172, 242);
+}
+
+#nav-title{
+    color: rgb(25, 23, 37);
+    display: inline;
+    font-size: 40px;
+    float: left;
+}
+
+#nav-menu{
+    display: inline;
+    float:left;
+    color: rgb(25, 23, 37);
+    background-color: transparent;
+    margin: 15px;
+    border: none;
+}
+
+.nav-link{
+    display: block;
+    align-items: flex-end;
+    float:right;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}

@@ -37,6 +37,15 @@ h2{
     color: rgb(241, 195, 242);
 }
 
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+
+
 #navbar{
     margin-top: 90px;
 }
