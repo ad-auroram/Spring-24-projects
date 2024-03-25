@@ -34,9 +34,16 @@ document.getElementById("navbar-css").innerText=`
 #nav-menu{
     align-items: center;
     color: rgb(25, 23, 37);
-    background-color: transparent;
+    background-color: rgba(0,0,0,0);
     margin: 15px;
     border: none;
+    border-radius: 15%;
+    transition: background-color .3s ease;
+    padding: 10px;
+}
+
+#nav-menu:hover{
+    background-color: rgba(241, 195, 242, 1);
 }
 
 .nav-link{
