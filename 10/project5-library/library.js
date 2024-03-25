@@ -38,12 +38,13 @@ document.getElementById("navbar-css").innerText=`
     margin: 15px;
     border: none;
     border-radius: 15%;
-    transition: background-color .3s ease;
+    transition: all .3s ease;
     padding: 10px;
 }
 
 #nav-menu:hover{
     background-color: rgba(241, 195, 242, 1);
+    box-shadow: 2px 3px rgba(0,0,0,.25)
 }
 
 .nav-link{
@@ -53,11 +54,12 @@ document.getElementById("navbar-css").innerText=`
     padding: 35px;
     text-decoration: none;
     border-radius: 15%;
-    transition: background-color .3s ease;
+    transition: all .3s ease;
 }
 
 .nav-link:hover{
     background-color: rgb(241, 195, 242);
+    box-shadow: 2px 3px rgba(0,0,0,.25)
 }
 
 .container{
