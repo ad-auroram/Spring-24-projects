@@ -1,5 +1,20 @@
+document.getElementById("navbar-html").innerText=`
+<header id="nav-example">
+<section class="container">
+    <button id="nav-menu" class="material-symbols-outlined">menu</button>
+    <h1 id="nav-title">Title</h1>
+</section>
+<section class="container">
+    <a href="link here!" class="nav-link">Link</a>
+    <a href="link here!" class="nav-link">Link</a>
+    <a href="link here!" class="nav-link">Link</a>
+    <a href="link here!" class="nav-link">Link</a>
+</section>
+</header>
 
+`
 
+document.getElementById("navbar-css").innerText=`
 #nav-example{
     display:flex;
     flex-direction: row;
@@ -42,3 +57,6 @@
     display: flex;
     align-items: center;
 }
+
+`
+    
