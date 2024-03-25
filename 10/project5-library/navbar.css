@@ -2,19 +2,22 @@
 
 #nav-example{
     display:flex;
+    flex-direction: row;
+    top:0px;
+    right:0px;
+    left:0px;
+    position:fixed;
     background-color: rgb(202, 172, 242);
+    justify-content: space-between;
 }
 
 #nav-title{
     color: rgb(25, 23, 37);
-    display: inline;
     font-size: 40px;
-    float: left;
 }
 
 #nav-menu{
-    display: inline;
-    float:left;
+    align-items: center;
     color: rgb(25, 23, 37);
     background-color: transparent;
     margin: 15px;
@@ -22,12 +25,15 @@
 }
 
 .nav-link{
-    display: block;
-    align-items: flex-end;
-    float:right;
     color: white;
     font-size: 20px;
     text-align: center;
-    padding: 14px 16px;
+    padding: 15px;
+    margin-right:15px;
     text-decoration: none;
+}
+
+.container{
+    display: flex;
+    align-items: center;
 }
