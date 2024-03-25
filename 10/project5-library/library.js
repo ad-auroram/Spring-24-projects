@@ -68,4 +68,61 @@ document.getElementById("navbar-css").innerText=`
 }
 
 `
-    
+
+document.getElementById("buttons-html").innerText=`
+<button id="button1" class="buttons">Button 1</button>
+
+<button id="button2" class="buttons">
+    <span class="material-symbols-outlined"><span class="material-symbols-outlined" style="margin
+    -right:5px;">thumb_up</span></span>
+    <span>Button 2</span>
+</button>
+
+<button id="button3" class="buttons">
+    <span class="material-symbols-outlined">search</span>
+</button>
+
+`
+
+document.getElementById("buttons-css").innerText=`
+.buttons{
+    background-color: rgb(89, 81, 140);
+    color: rgb(241, 195, 242);
+    font-size: 18px;
+    margin: 20px;
+    transition: all .3s ease;
+}
+
+.buttons:hover{
+    background-color:rgb(241, 195, 242);
+    color: rgb(89, 81, 140);
+    box-shadow: 2px 5px rgba(0,0,0,.25);
+}
+
+#button1{
+    border: 2px solid rgb(20,20,20);
+    border-radius: 10px;;
+    padding: 15px;
+    height: 60px;
+}
+
+#button2{
+    display:flex;
+    align-items: center;
+    border: 2px solid rgb(20,20,20);
+    border-radius: 10px;
+    padding: 15px;
+    height: 60px;
+    justify-content: center;
+}
+
+#button3{
+    border: 2px solid rgb(20,20,20);
+    border-radius: 50%;
+    padding: 20px;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+}
+
+`
