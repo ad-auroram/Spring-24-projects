@@ -143,3 +143,78 @@ button.addEventListener("mouseleave", (e) => {
 });
 
 `
+
+
+document.getElementById("spinners-html").innerText=`
+<div id="spin-ex1"></div>
+
+<div id="spin-ex2">
+    Loading...
+</div>
+
+<div id="spin-ex3"></div>
+
+`
+
+document.getElementById("spinners-css").innerText=`
+---Spinner 1---
+#spin-ex1{
+    padding:20px;
+    margin: 20px;
+    border: 5px solid rgb(0,0,0,.25);
+    border-top: 5px solid rgb(241, 195, 242);
+    border-radius: 50%;
+    position: absolute;
+    animation: mouse-spin;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes mouse-spin {
+    0%{
+        rotate: 0deg;
+    }
+    50%{
+        rotate:180deg;
+    }
+    75%{
+        rotate:270deg;
+    }
+    100%{
+        rotate:360deg;
+    }
+}
+
+---Spinner 2---
+#spin-ex2{
+    color: white;
+    text-shadow: 2px 2px black;
+    margin: 20px;
+    animation: loading-text;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+}
+
+@keyframes loading-text{
+    0%{
+        color: white;
+        text-shadow: 2px 2px black;
+    }
+    50%{
+        color: rgba(0,0,0,0);
+        text-shadow: rgba(0,0,0,0);
+    }
+}
+
+`
+
+document.getElementById("spinners-js").innerText=`
+window.addEventListener("mousemove", (e)=>{
+    let _el = document.getElementById('spin-ex1'); 
+	_el.style.top = e.clientY-40 + "px"; 
+	_el.style.left = e.clientX-40 + "px";
+})
+
+`
