@@ -32,6 +32,8 @@ h2{
     text-align: left;
     font-size: 18px;
     width: 50%;
+    max-height: 400px;
+    overflow:auto;
     border-radius: 15px;
     margin:auto;
     margin-top: 20px;
