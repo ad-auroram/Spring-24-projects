@@ -152,7 +152,9 @@ document.getElementById("spinners-html").innerText=`
     Loading...
 </div>
 
-<div id="spin-ex3"></div>
+<div id="spin-ex3">
+    <div id="progress"></div>
+</div>
 
 `
 
@@ -205,6 +207,46 @@ document.getElementById("spinners-css").innerText=`
     50%{
         color: rgba(0,0,0,0);
         text-shadow: rgba(0,0,0,0);
+    }
+}
+
+---Spinner 3---
+#spin-ex3{
+    border: 3px solid rgb(25, 23, 37);
+    height: 10px;
+    width: 100px;
+    margin: 15px;
+    padding: 5px;
+    border-radius: 15px;
+}
+
+#spin-ex3 #progress{
+    position: absolute;
+    background-color: rgb(241, 195, 242);
+    width: 0px;
+    height: 10px;
+    border-radius: 15px;
+    animation: progress-bar;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes progress-bar{
+    0%{
+        width:0px;
+    }
+    25%{
+        width: 50px;
+    }
+    50%{
+        width:75px;
+    }
+    75%{
+        width:80px;
+    }
+    100%{
+        width: 100px;
     }
 }
 
