@@ -13,6 +13,26 @@
     border: 5px solid rgb(0,0,0,.25);
     border-top: 5px solid rgb(241, 195, 242);
     border-radius: 50%;
+    position: absolute;
+    animation: mouse-spin;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes mouse-spin {
+    0%{
+        rotate: 0deg;
+    }
+    50%{
+        rotate:180deg;
+    }
+    75%{
+        rotate:270deg;
+    }
+    100%{
+        rotate:360deg;
+    }
 }
 
 #spin-ex2{
