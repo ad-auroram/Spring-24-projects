@@ -99,6 +99,10 @@ document.getElementById("buttons-css").innerText=`
     box-shadow: 2px 5px rgba(0,0,0,.25);
 }
 
+.buttons[data-pressed="true"] {
+    box-shadow: none;
+}
+
 #button1{
     border: 2px solid rgb(20,20,20);
     border-radius: 10px;;
@@ -124,5 +128,18 @@ document.getElementById("buttons-css").innerText=`
     bottom: 50px;
     right: 50px;
 }
+
+`
+document.getElementById("buttons-js").innerText=`
+const button = document.getElementsById("button");
+button.addEventListener("mousedown", (e) => {
+    e.target.dataset.pressed = "true";
+});
+button.addEventListener("mouseup", (e) => {
+    e.target.dataset.pressed = "false";
+});
+button.addEventListener("mouseleave", (e) => {
+    e.target.dataset.pressed = "false";
+});
 
 `
