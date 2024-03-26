@@ -1,0 +1,28 @@
+
+#spin-ex1{
+
+}
+
+#spin-ex2{
+    color: white;
+    text-shadow: 2px 2px black;
+    animation: loading-text;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+}
+
+@keyframes loading-text{
+    0%{
+        color: white;
+        text-shadow: 2px 2px black;
+    }
+    50%{
+        color: rgba(0,0,0,0);
+        text-shadow: rgba(0,0,0,0);
+    }
+}
+
+#spin-ex3{
+
+}
