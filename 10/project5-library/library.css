@@ -24,6 +24,7 @@ h2{
     right: 0px;
     background-color:rgb(202, 172, 242);
     color:rgb(25, 23, 37);
+    box-shadow: 2px 3px rgba(0,0,0,.5);
 }
 
 .code{
