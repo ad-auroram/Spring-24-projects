@@ -1,3 +1,7 @@
+document.getElementById("font-link").innerText=`
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+`
+
 document.getElementById("navbar-html").innerText=`
 <header id="nav-example">
 <section class="container">

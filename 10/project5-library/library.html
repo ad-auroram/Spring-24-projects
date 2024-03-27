@@ -2,6 +2,7 @@
     <head>
         <link rel="stylesheet" href="library.css" />
         <link rel="stylesheet" href="navbar.css" />
+        <link rel="stylesheet" href="navDrawer.css" />
         <link rel="stylesheet" href="button.css" />
         <link rel="stylesheet" href="spinner.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -14,7 +15,18 @@
             <h1 id="title">SpinUp Libraries</h1>
         </header>
         <h2 id="first">CSS Component Library</h2>
+        <p>All icons from Google Fonts. if you're using a component with a font, add this to the head of the html:
+            <pre id=font-link style="display:inline; margin:0px;"></pre>
+        </p>
+        <nav id="drawer">
+            <a href="#nav-bar" class="nav-item"><span class="material-symbols-outlined">search</span>Navigation Bar</a>
+            <a href="#nav-drawer"class="nav-item"><span class="material-symbols-outlined">menu_open</span>Navigation Drawer</a>
+            <a href="#button"class="nav-item"><span class="material-symbols-outlined">arrow_selector_tool</span>Buttons</a>
+            <a href="#spinners"class="nav-item"><span class="material-symbols-outlined">progress_activity</span>Spinners</a>
+            <a href="#img-carousel"class="nav-item"><span class="material-symbols-outlined">theaters</span>Image Carousel</a>
+        </nav>
         <section id="navbar" class="component">
+            <a id="nav-bar"></a>
             <h2>Navbar</h2>
             <h3 class="part-label">Example:</h3>
             <div id="navbar-example">
@@ -42,10 +54,13 @@
         </section>
 
         <section class="component">
+            <a id="nav-drawer"></a>
             <h2>Navigation Drawer</h2>
             <h3 class="part-label">Example:</h3>
             <div id="navdrawer-example">
-
+                <button id="menu-button">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
             </div>
             <h3 class="part-label">HTML</h3>
             <div id="navdrawer-html" class="code">
@@ -62,6 +77,7 @@
         </section>
 
         <section class="component">
+            <a id="button"></a>
             <h2>Buttons</h2>
             <h3 class="part-label">Example:</h3>
             <div id="button-examples">
@@ -89,6 +105,7 @@
         </section>
 
         <section class="component">
+            <a id="spinners"></a>
             <h2>Loading Spinners</h2>
             <h3 class="part-label">Example:</h3>
             <div id="spinner-container">
@@ -116,6 +133,7 @@
         </section>
 
         <section class="component">
+            <a id="img-carousel"></a>
             <h2>Image Carousel</h2>
             <h3 class="part-label">Example:</h3>
             <div id="carousel-example">
