@@ -73,6 +73,113 @@ document.getElementById("navbar-css").innerText=`
 
 `
 
+document.getElementById("navdrawer-html").innerText=`
+<button id="menu-button">
+    <span class="material-symbols-outlined">menu</span>
+</button>
+
+<nav id="drawer">
+<a href="#nav-bar" class="nav-item"><span class="material-symbols-outlined">search</span>Navigation Bar</a>
+<a href="#nav-drawer"class="nav-item"><span class="material-symbols-outlined">menu_open</span>Navigation Drawer</a>
+<a href="#button"class="nav-item"><span class="material-symbols-outlined">arrow_selector_tool</span>Buttons</a>
+<a href="#spinners"class="nav-item"><span class="material-symbols-outlined">progress_activity</span>Spinners</a>
+<a href="#img-carousel"class="nav-item"><span class="material-symbols-outlined">theaters</span>Image Carousel</a>
+</nav>
+<div id="mask"></div>
+`
+
+document.getElementById("navdrawer-css").innerText=`
+a{
+    all:unset;
+}
+
+#menu-button{
+    border: 2px solid rgb(20,20,20);
+    border-radius: 10px;;
+    padding: 15px;
+    height: 60px;
+    background-color: rgb(89, 81, 140);
+    color: rgb(241, 195, 242);
+    font-size: 18px;
+    margin: 20px;
+    transition: all .3s ease;
+}
+
+#menu-button:hover{
+    background-color:rgb(241, 195, 242);
+    color: rgb(89, 81, 140);
+    box-shadow: 2px 5px rgba(0,0,0,.25);
+}
+
+#drawer{
+    display:flex;
+    flex-direction:column;
+    color: rgb(25, 23, 37);
+    background-color: rgb(202, 172, 242);
+    position:fixed;
+    overflow:auto;
+    width:300px;
+    justify-content:left;
+    align-items:flex-start;
+    top:80px;
+    bottom:0px;
+    left:-310px;
+    transition: all .3s ease;
+}
+
+#drawer[data-open="true"]{
+    left:0px;
+}
+
+.nav-item{
+    display:flex;
+    text-align: left;
+    align-content: center;
+    font-size: 18px;
+    text-decoration: none;
+    border-bottom: 2px solid rgb(25, 23, 37); 
+    width:300px;
+    padding:10px;
+    transition: all .2s ease;
+}
+
+.nav-item:hover{
+    background-color: rgb(25, 23, 37);
+    color: rgb(202, 172, 242);
+}
+
+#mask{
+    position:fixed;
+    top:77;
+    left:300;
+    background-color: rgba(0,0,0,0);
+    transition: background-color .2s ease;
+}
+
+#mask[data-open="true"] {
+    background-color: rgba(0,0,0,.5);
+    bottom: 0;
+    right: 0;
+}
+`
+
+document.getElementById("navdrawer-js").innerText=`
+let open=false;
+const drawer = document.getElementById("drawer");
+const mask = document.getElementById("mask")
+
+document.getElementById("menu-button").addEventListener("click", toggle)
+
+mask.addEventListener("click", toggle);
+
+//remove space between "$" and brackets
+function toggle(){
+    open=!open;
+    drawer.dataset.open = $ {open};
+    mask.dataset.open = $ {open};
+}
+`
+
 document.getElementById("buttons-html").innerText=`
 <button id="button1" class="buttons">Button 1</button>
 
