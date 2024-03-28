@@ -30,6 +30,7 @@ h2{
     background-color:rgb(202, 172, 242);
     color:rgb(25, 23, 37);
     box-shadow: 2px 3px rgba(0,0,0,.5);
+    z-index: 1;
 }
 
 .code{

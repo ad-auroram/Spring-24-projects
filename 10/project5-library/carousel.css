@@ -1,0 +1,40 @@
+#carousel-example{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 15px;
+    margin: auto;
+    padding: 200px;
+}
+
+.image{
+    background-position:center;
+    padding: 200px;
+    position: absolute;
+    animation: fade;
+    animation-duration: 5s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+}
+
+@keyframes fade{
+    0%{
+        opacity: 0;
+        left: 65%
+    }
+    15%{
+        opacity: 100%;
+        left: 40%;
+    }
+    85%{
+        opacity: 100%;
+        left:40%
+    }
+    100%{
+        opacity: 0;
+        left:15%
+    }
+
+}
