@@ -4,6 +4,7 @@ const drawer = document.getElementById("drawer");
 const mask = document.getElementById("mask")
 
 document.getElementById("menu-button").addEventListener("click", toggle)
+document.getElementById("nav").addEventListener("click", toggle);
 
 mask.addEventListener("click", toggle);
 

@@ -18,8 +18,24 @@ h2{
     margin:20px;
 }
 
+#nav{
+    align-items: center;
+    color: rgb(25, 23, 37);
+    background-color: rgba(0,0,0,0);
+    margin: 0px 10px;
+    border: none;
+    border-radius: 15%;
+    transition: all .3s ease;
+    padding: 10px;
+}
+#nav:hover{
+    background-color: rgba(241, 195, 242, 1);
+    box-shadow: 2px 3px rgba(0,0,0,.25)
+}
+
 #title{
     display:flex;
+    align-items:center;
     text-align: left;
     position: fixed;
     padding: 20px;
