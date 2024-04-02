@@ -19,7 +19,18 @@ public class UnionFind {
         return Parents[num];
     }
 
-    public int union(int num1, int num2){
-        return num1;
+    public void union(int num1, int num2){
+        int group1 = find(num1);
+        int group2 = find(num2);
+        if (group1==group2){
+            return;
+        }
+        if (Size[group1]<Size[group2]){
+            Size[group2]+=Size[group1];
+            Parents[group1] = group2;
+        }else{
+            Size[group1]+=Size[group2];
+            Parents[group2] = group1;
+        }
     }
 }
