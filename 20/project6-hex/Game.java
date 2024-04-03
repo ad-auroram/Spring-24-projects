@@ -48,18 +48,19 @@ public class Game {
                 int move= Integer.parseInt(reader.next());
                 if (moves%2==0) color="red";
                 else color="blue";
-                int j = (move%11);
-                if (j<0){
-                    j=0;
-                }
                 int i = (move/11);
+                int j = (move%11-1);
+                if (j<0){
+                    j=10;
+                    i--;
+                }
                 Tile currTile = board[i][j];
                 currTile.updateColor(color);
-                printBoard(board);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        printBoard(board);
         System.out.println(moves);
     }
 
