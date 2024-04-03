@@ -1,12 +1,10 @@
 public class playHex {
     public static void main( String [ ] args ) {
-        Game game = new Game();
-        Tile[][] board = game.makeBoard();
         System.out.println("Let's play Hex!\n");
-        game.printBoard(board);
-        System.out.println();
-        Tile tile = board[3][6];
-        tile.updateColor("red");
-        game.printBoard(board);
+        Game game1 = new Game();
+        game1.playGame("moves.txt");
+//        Game game2= new Game();
+//        game2.playGame("moves2.txt");
+
     }
 }
