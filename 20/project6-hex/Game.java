@@ -1,4 +1,4 @@
-public class Board {
+public class Game {
 
     public Tile[][] makeBoard(){
         Tile[][] board = new Tile[11][11];

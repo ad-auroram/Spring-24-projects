@@ -9,10 +9,10 @@ public class Tile {
         this.color=color;
     }
 
-    private void updateColor(String color){
+    public void updateColor(String color){
         this.color=color;
     }
-    private int[] findNeighbors(){
+    public int[] findNeighbors(){
         int[] neighbors= {1,2,3,4,5,6};
         return neighbors;
     }
