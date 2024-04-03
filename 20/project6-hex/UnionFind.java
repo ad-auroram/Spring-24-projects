@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 
 public class UnionFind {
     private int[] Parents;
