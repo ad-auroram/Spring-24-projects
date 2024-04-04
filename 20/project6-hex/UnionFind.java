@@ -14,10 +14,10 @@ public class UnionFind {
 
     public int find(int num){
         if (Parents[num]==num){
-            System.out.println(num);
+            //System.out.println(num);
             return num;
         }
-        System.out.println(num);
+        //System.out.println(num);
         Parents[num]=find(Parents[num]);
         return Parents[num];
     }

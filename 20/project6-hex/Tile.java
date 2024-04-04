@@ -12,13 +12,6 @@ public class Tile {
     public void updateColor(String color){
         this.color=color;
     }
-    public Tile[] findNeighbors(Tile tile){
-        //check for edges
-        //add offset values and return as a list
-        Tile[] neighbors = new Tile[6];
-
-        return neighbors;
-    }
 
 
     public String toString() {
