@@ -63,7 +63,7 @@ public class Game {
                 union.union(move, top);
             }
         }
-        if(move<121&&move>=110){
+        if(move<=121&&move>=110){
             edgeBottom=true;
             if (tile.color=="red"){
                 union.union(move, bottom);
