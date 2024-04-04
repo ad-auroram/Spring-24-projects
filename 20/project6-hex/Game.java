@@ -1,5 +1,4 @@
 import java.io.File;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -70,7 +69,6 @@ public class Game {
             }
         }
 
-
         ArrayList<Integer> neighbors = new ArrayList<>();
         int[] offset= {-11,-10,-1,1,10,11};
         for (int i=0; i<6;i++){
@@ -105,11 +103,11 @@ public class Game {
 
     public boolean winner(UnionFind union){
         if (union.find(right)==union.find(left)){
-            System.out.print("Blue");
+            System.out.print("-------> Blue");
             return true;
         }
         if(union.find(top)==union.find(bottom)){
-            System.out.print("Red");
+            System.out.print("-------> Red");
             return true;
         }
         return false;
