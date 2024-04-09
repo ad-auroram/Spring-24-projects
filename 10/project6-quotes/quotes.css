@@ -1,8 +1,9 @@
 :root{
-    --background: rgb(161, 94, 73);
-    --quote-bubble: rgb(202, 137, 95);
-    --highlight: rgb(205, 231, 176);
-    --text: rgb(47, 27, 37);
+    --background: rgb(73, 77, 104);
+    --quote-bubble: rgb(154, 123, 119);
+    --highlight: rgb(213, 164, 132);
+    --title: rgb(252, 205, 135);
+    --text: rgb(20,20,20);
 }
 
 body{
@@ -10,25 +11,45 @@ body{
     align-items: center;
     flex-direction: column;
     background-color: var(--background);
-    color: var(--text);
+    color: var(--title);
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 header{
-    font-size: 2em;
+    font-size: 25px;;
     padding: 15px;
-    margin-top:15px;
+    margin-top:50px;
 }
 
 #search-bar{
     margin: 10px;
     padding:5px;
     border: 2px solid var(--text);
-    width: 25%;
+    width: clamp(300px, 80%, 400px);
     border-radius:15px;
+    background-color: rgb(149, 151, 188);
+}
+
+#quotes, #pinned{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    width: clamp(400px, 90%, 500px);
+    
 }
 
 .quote{
     font-family: Caveat, 'Lucida Sans', Geneva, Verdana, sans-serif;
     background-color: var(--quote-bubble);
+    color: black;
+    padding:10px;
+    border: 2px solid var(--text);
+    border-radius:15px;
+    font-size: 20px;
+    margin: 15px;
+}
+
+#pinned > .quote{
+    background-color: var(--highlight);
 }
