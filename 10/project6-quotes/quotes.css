@@ -15,8 +15,8 @@ body{
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-header{
-    font-size: 25px;;
+#title{
+    font-size: 22px;;
     padding: 15px;
     margin-top:50px;
 }
@@ -28,9 +28,26 @@ header{
     width: clamp(300px, 80%, 400px);
     border-radius:15px;
     background-color: rgb(149, 151, 188);
+    font-size: 16px;
 }
 
-#quotes, #pinned{
+#startup{
+    font-family: Caveat, 'Lucida Sans', Geneva, Verdana, sans-serif;
+    width: clamp(400px, 90%, 500px);
+    padding: 10px;
+    font-size: 30px;
+    margin: 20px;
+}
+
+.quote-content{
+    text-align: left;
+}
+
+.quote-author{
+    text-align: right;
+}
+
+#quotes, #pins{
     display:flex;
     flex-direction:column;
     align-items: center;
@@ -52,4 +69,9 @@ header{
 
 #pinned > .quote{
     background-color: var(--highlight);
+}
+
+.searching{
+    margin-top: 0px;
+    font-size: 20px;
 }
