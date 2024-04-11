@@ -3,7 +3,6 @@ const search = document.getElementById("search-bar");
 async function getRandomQuote(){
     const result = await fetch("https://usu-quotes-mimic.vercel.app/api/random");
     const quote = await result.json();
-    //console.log(quote);
     return quote;
 }
 
@@ -17,7 +16,6 @@ window.addEventListener("load", async()=>{
     }else{
         startAuthor.innerText=`-${startQuote.author}`;
     }
-    //console.log(startQuote);
 })
 
 function clearQuotes(){
@@ -29,12 +27,35 @@ function clearQuotes(){
 async function getQuotes(author){
     const result = await fetch(`https://usu-quotes-mimic.vercel.app/api/search?query=${author}`);
     const quotes = await result.json()
-    console.log(quotes);
     return quotes.results;
 }
 
+function addListeners(quote){
+    quote.addEventListener("click", () =>{
+        togglePinned(quote);
+    })
+    quote.addEventListener("keypress", (e) =>{
+        if (e.code === "Space"){
+        togglePinned(quote);
+        }
+    })
+}
+
+function togglePinned(quote){
+    if (quote.dataset.pinned==="false"){
+        document.getElementById("quotes").removeChild(quote);
+        document.getElementById("pinned").appendChild(quote);
+        quote.dataset.pinned=true;
+    }
+    else if (quote.dataset.pinned==="true"){
+        document.getElementById("pinned").removeChild(quote);
+        document.getElementById("quotes").appendChild(quote);
+        quote.style.order = 1;
+        quote.dataset.pinned=false;
+    }
+}
+
 function displayQuotes(quotes){
-    //debugger
     for (const quote of quotes){
         const container= document.createElement("div");
         container.className = "quote";
@@ -46,6 +67,10 @@ function displayQuotes(quotes){
         author.className="quote-author";
         author.innerText = `-${quote.author}`;
         container.appendChild(author);
+        addListeners(container);
+        container.dataset.pinned = false;
+        container.tabIndex=1;
+        console.log(container.dataset);
         document.getElementById("quotes").appendChild(container);
     }
 }

@@ -65,10 +65,12 @@ body{
     border-radius:15px;
     font-size: 20px;
     margin: 15px;
+    order:2;
 }
 
 #pinned > .quote{
     background-color: var(--highlight);
+    order:1;
 }
 
 .searching{
