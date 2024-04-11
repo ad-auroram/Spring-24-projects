@@ -69,7 +69,7 @@ function displayQuotes(quotes){
         container.appendChild(author);
         addListeners(container);
         container.dataset.pinned = false;
-        container.tabIndex=1;
+        container.tabIndex=0;
         console.log(container.dataset);
         document.getElementById("quotes").appendChild(container);
     }
