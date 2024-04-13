@@ -95,15 +95,16 @@ body{
 #error-message{
     position: fixed;
     padding: 16px;
-    background-color: var(--highlight);
+    background-color: var(--title);
     color: var(--text);
     border-radius: 15px;
-    border: 2px solid var(--highlight);
-    font-size: 25px;
+    border: 2px solid var(--title);
+    font-size: 1.5em;
     font-weight: bold;
     bottom: 0px;
     left: 100px;
     right: 100px;
+    text-align: center;
     transform: translateY(200px);
 }
 #error-message[data-open="true"] {
