@@ -16,9 +16,10 @@ body{
 }
 
 #title{
+    align-self: center;
     font-size: 2.5em;
     padding: 15px;
-    margin-top:50px;
+    margin-top:5em;
 }
 
 #search-bar{
@@ -33,7 +34,7 @@ body{
 
 #startup{
     font-family: Caveat, 'Lucida Sans', Geneva, Verdana, sans-serif;
-    width: clamp(400px, 90%, 500px);
+    width: 75%;
     padding: 10px;
     font-size: 2.5em;
     margin: 20px;
@@ -52,7 +53,7 @@ body{
     flex-direction:column;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 100vw;
 }
 
 .quote{
@@ -62,7 +63,7 @@ body{
     padding:10px;
     border: 2px solid var(--text);
     border-radius:15px;
-    font-size: clamp(2em, 300px, 20px);
+    font-size: 2em;
     margin: 15px;
     order:2;
     width: 80%;
@@ -76,4 +77,17 @@ body{
 .searching{
     margin-top: 0px;
     font-size: 2em;;
+}
+
+@media screen and (min-width:800px){
+    #search-bar{
+        font-size: 20px;
+        width:65%;
+    }
+    #startup{
+        width:65%
+    }
+    #quotes, #pinned{
+        width:80vw;
+    }
 }
