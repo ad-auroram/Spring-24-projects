@@ -89,9 +89,23 @@ search.addEventListener("keypress", async(e) => {
         searchMode();
         clearQuotes();
         let author = search.value;
+        if (author ===""){
+            error("Field cannot be blank!");
+            return;
+        }
         let quotes = await getQuotes(author);
         console.log(quotes);
         displayQuotes(quotes);
     }
 
     });
+
+function error(message){
+    const error = document.getElementById("error-message");
+    error.innerHTML = message;
+    error.dataset.open = "true";
+    setTimeout(() => {
+        error.dataset.open = false;
+        error.innerHTML = "";
+    }, 5000);
+}

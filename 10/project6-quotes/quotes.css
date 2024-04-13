@@ -91,3 +91,21 @@ body{
         width:80vw;
     }
 }
+
+#error-message{
+    position: fixed;
+    padding: 16px;
+    background-color: var(--highlight);
+    color: var(--text);
+    border-radius: 15px;
+    border: 2px solid var(--highlight);
+    font-size: 25px;
+    font-weight: bold;
+    bottom: 0px;
+    left: 100px;
+    right: 100px;
+    transform: translateY(200px);
+}
+#error-message[data-open="true"] {
+    transform: translateY(-10px);
+}
