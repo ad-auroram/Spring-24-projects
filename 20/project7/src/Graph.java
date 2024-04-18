@@ -108,7 +108,7 @@ public class Graph {
     }
 
     public static void main(String[] args) {
-        String[] files = {"transport0.txt", "transport1.txt", "transport2.txt", "transport3.txt", "flow10.txt"};
+        String[] files = {"transport0.txt", "transport1.txt", "transport2.txt", "transport3.txt", "Flow10.txt"};
         for (String fileName : files) {
             Graph graph = new Graph(fileName);
             graph.minCostMaxFlow();
