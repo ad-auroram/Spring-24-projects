@@ -13,7 +13,7 @@ public class Graph {
 
     public Graph(String fileName) {
         this.vertexCt = 0;
-        source  = 0;
+        source = 0;
         this.graphName = "";
         makeGraph(fileName);
 
@@ -45,14 +45,14 @@ public class Graph {
      */
     public String printMatrix(String label, int[][] m) {
         StringBuilder sb = new StringBuilder();
-        sb.append("\n " + label+ " \n     ");
-        for (int i=0; i < vertexCt; i++)
+        sb.append("\n " + label + " \n     ");
+        for (int i = 0; i < vertexCt; i++)
             sb.append(String.format("%5d", i));
         sb.append("\n");
         for (int i = 0; i < vertexCt; i++) {
-            sb.append(String.format("%5d",i));
+            sb.append(String.format("%5d", i));
             for (int j = 0; j < vertexCt; j++) {
-                sb.append(String.format("%5d",m[i][j]));
+                sb.append(String.format("%5d", m[i][j]));
             }
             sb.append("\n");
         }
@@ -96,19 +96,84 @@ public class Graph {
             e.printStackTrace();
         }
         sink = vertexCt - 1;
-        System.out.println( printMatrix("Edge Cost" ,edgeCost));
+        System.out.println(printMatrix("Edge Cost", edgeCost));
     }
+
+
+    public void findWeightedFlow() {
+        //finds each path through the graph and costs
+        int flow = 0;
+        if (bellman(source, sink)) {
+            System.out.println("Path found!");
+        }
+
+    }
+
+    public boolean isCheaper(int[] cost, int v1, int v2) {
+        if (residual[v1][v2] > 0) {
+            int newCost = cost[v1] + edgeCost[v1][v2];
+            return newCost < cost[v2];
+        }
+        return false;
+    }
+
+    public ArrayList writePath(int[] parents){
+        ArrayList path = new ArrayList();
+        for (int i=0; i<parents.length; i++){
+            if (!path.contains(parents[i])){
+                path.add(parents[i]);
+            }
+        }
+        for (int j=0; j<path.size(); j++){
+            System.out.print(path.get(j)+", ");
+        }
+        System.out.print(sink+" ");
+        return path;
+    }
+
+    public boolean bellman(int start, int sink) {
+        int cost[] = new int[vertexCt];
+        cost[0] = 0;
+        for (int n = 1; n < vertexCt; n++) {
+            cost[n] = Integer.MAX_VALUE;
+        }
+        int parents[] = new int[vertexCt];
+        for (int i = 0; i < vertexCt; i++) {
+            for (int u = 0; u < vertexCt; u++) {
+                for (int v = 0; v < vertexCt; v++) {
+                    if (isCheaper(cost, u, v)) {
+                        cost[v] = cost[u] + edgeCost[u][v];
+                        parents[v] = u;
+                    }
+                }
+            }
+        }
+            if (parents[sink] != 0) {
+                writePath(parents);
+                System.out.println("("+cost[cost.length-1]+")");
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+
+    //public void finalEdgeFlow(){
+        //returns final flow for the chosen path for each edge
+    //}
+
+
 
 
     public void minCostMaxFlow(){
         System.out.println( printMatrix("Capacity", capacity));
-        //findWeightedFlow();
+        findWeightedFlow();
         System.out.println(printMatrix("Residual", residual));
         //finalEdgeFlow();
     }
 
     public static void main(String[] args) {
-        String[] files = {"transport0.txt", "transport1.txt", "transport2.txt", "transport3.txt", "Flow10.txt"};
+        String[] files = {"transport/transport0.txt"};//, "transport/transport1.txt", "transport/transport2.txt", "transport/transport3.txt", "transport/Flow10.txt"};
         for (String fileName : files) {
             Graph graph = new Graph(fileName);
             graph.minCostMaxFlow();
