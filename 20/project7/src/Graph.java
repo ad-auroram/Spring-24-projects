@@ -102,9 +102,10 @@ public class Graph {
 
     public void findWeightedFlow() {
         //finds each path through the graph and costs
-        int flow = 0;
         if (bellman(source, sink)) {
             System.out.println("Path found!");
+        }else{
+            System.out.println("No path found");
         }
 
     }
@@ -124,11 +125,24 @@ public class Graph {
                 path.add(parents[i]);
             }
         }
+        path.add(sink);
         for (int j=0; j<path.size(); j++){
-            System.out.print(path.get(j)+", ");
+            System.out.print(path.get(j)+" ");
         }
-        System.out.print(sink+" ");
         return path;
+    }
+
+    public void addFlow(ArrayList path){
+        int flow = 10000;
+        for (int i=1; i<path.size()-1; i++){
+            int coor1 = (int) path.get(i);
+            int coor2 = (int) path.get(i+1);
+            if (residual[coor1][coor2] < flow){
+                flow = residual[coor1][coor2];
+            }
+        }
+        System.out.print("("+flow+") ");
+
     }
 
     public boolean bellman(int start, int sink) {
@@ -138,6 +152,9 @@ public class Graph {
             cost[n] = Integer.MAX_VALUE;
         }
         int parents[] = new int[vertexCt];
+        for (int n = 1; n < vertexCt; n++) {
+            parents[n] = 1000;
+        }
         for (int i = 0; i < vertexCt; i++) {
             for (int u = 0; u < vertexCt; u++) {
                 for (int v = 0; v < vertexCt; v++) {
@@ -148,9 +165,10 @@ public class Graph {
                 }
             }
         }
-            if (parents[sink] != 0) {
-                writePath(parents);
-                System.out.println("("+cost[cost.length-1]+")");
+            if (parents[sink] != 1000) {
+                ArrayList path = writePath(parents);
+                addFlow(path);
+                System.out.println("$"+cost[cost.length-1]+" ");
                 return true;
             } else {
                 return false;
@@ -167,13 +185,13 @@ public class Graph {
 
     public void minCostMaxFlow(){
         System.out.println( printMatrix("Capacity", capacity));
-        findWeightedFlow();
         System.out.println(printMatrix("Residual", residual));
+        findWeightedFlow();
         //finalEdgeFlow();
     }
 
     public static void main(String[] args) {
-        String[] files = {"transport/transport0.txt"};//, "transport/transport1.txt", "transport/transport2.txt", "transport/transport3.txt", "transport/Flow10.txt"};
+        String[] files = {"transport/transport0.txt", "transport/transport1.txt", "transport/transport2.txt", "transport/transport3.txt", "transport/Flow10.txt"};
         for (String fileName : files) {
             Graph graph = new Graph(fileName);
             graph.minCostMaxFlow();
