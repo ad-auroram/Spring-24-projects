@@ -110,6 +110,12 @@ public class Graph {
 
     }
 
+    /**
+     * @param cost the list of costs to get to nodes
+     * @param v1 x coordinate for the array
+     * @param v2 y coordinate for the array
+     * @return if the new edge cost is cheaper than the current recorded cost
+     */
     public boolean isCheaper(int[] cost, int v1, int v2) {
         if (residual[v1][v2] > 0) {
             int newCost = cost[v1] + edgeCost[v1][v2];
@@ -118,6 +124,11 @@ public class Graph {
         return false;
     }
 
+    /**
+     * condenses the parents array into a list of nodes visited from source to sink
+     * @param parents the array of predecessors
+     * @return a list of nodes
+     */
     public ArrayList writePath(int[] parents){
         ArrayList path = new ArrayList();
         for (int i=0; i<parents.length; i++){
@@ -132,6 +143,11 @@ public class Graph {
         return path;
     }
 
+    /**
+     * calculates the flow of the path by finding the shortest capacity on any edge
+     * adds the flow to the total flow of the graph
+     * @param path the series of nodes from source to sink
+     */
     public void addFlow(ArrayList path){
         int flow = 10000;
         for (int i=1; i<path.size()-1; i++){
@@ -142,9 +158,15 @@ public class Graph {
             }
         }
         System.out.print("("+flow+") ");
-
+        totalFlow+=flow;
     }
 
+    /**
+     * checks if a shortest augmenting path exists, prints the path if true
+     * @param start the first node of the graph
+     * @param sink the last node of the graph
+     * @return whether or not a path exists
+     */
     public boolean bellman(int start, int sink) {
         int cost[] = new int[vertexCt];
         cost[0] = 0;
@@ -176,18 +198,16 @@ public class Graph {
         }
 
 
-    //public void finalEdgeFlow(){
-        //returns final flow for the chosen path for each edge
-    //}
-
-
+    public void finalEdgeFlow(){
+        System.out.println(totalFlow);
+    }
 
 
     public void minCostMaxFlow(){
         System.out.println( printMatrix("Capacity", capacity));
         System.out.println(printMatrix("Residual", residual));
         findWeightedFlow();
-        //finalEdgeFlow();
+        finalEdgeFlow();
     }
 
     public static void main(String[] args) {
