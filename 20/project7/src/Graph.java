@@ -102,12 +102,9 @@ public class Graph {
 
     public void findWeightedFlow() {
         //finds each path through the graph and costs
-        if (bellman(source, sink)) {
-            System.out.println("Path found!");
-        }else{
-            System.out.println("No path found");
+        while (bellman(sink)) {
+            System.out.println("-------------------");
         }
-
     }
 
     /**
@@ -117,11 +114,9 @@ public class Graph {
      * @return if the new edge cost is cheaper than the current recorded cost
      */
     public boolean isCheaper(int[] cost, int v1, int v2) {
-        if (residual[v1][v2] > 0) {
-            int newCost = cost[v1] + edgeCost[v1][v2];
-            return newCost < cost[v2];
-        }
-        return false;
+        int cap = residual[v1][v2];
+        int newCost = cost[v1] + edgeCost[v1][v2];
+        return cap != 0 && newCost >= 0 && newCost < cost[v2];
     }
 
     /**
@@ -132,14 +127,11 @@ public class Graph {
     public ArrayList writePath(int[] parents){
         ArrayList path = new ArrayList();
         for (int i=0; i<parents.length; i++){
-            if (!path.contains(parents[i])){
+            if (!path.contains(parents[i]) && parents[i]!=-1){
                 path.add(parents[i]);
             }
         }
         path.add(sink);
-        for (int j=0; j<path.size(); j++){
-            System.out.print(path.get(j)+" ");
-        }
         return path;
     }
 
@@ -148,26 +140,33 @@ public class Graph {
      * adds the flow to the total flow of the graph
      * @param path the series of nodes from source to sink
      */
-    public void addFlow(ArrayList path){
-        int flow = 10000;
-        for (int i=1; i<path.size()-1; i++){
+    public int addFlow(ArrayList path){
+        int flow = Integer.MAX_VALUE;
+        // Find the minimum flow among the edges in the path
+        for (int i = 0; i < path.size() - 1; i++) {
             int coor1 = (int) path.get(i);
-            int coor2 = (int) path.get(i+1);
-            if (residual[coor1][coor2] < flow){
+            int coor2 = (int) path.get(i + 1);
+            if (residual[coor1][coor2] > 0 && residual[coor1][coor2] < flow) {
                 flow = residual[coor1][coor2];
             }
         }
-        System.out.print("("+flow+") ");
-        totalFlow+=flow;
+        if (flow == Integer.MAX_VALUE) {
+            return 0;
+        }
+        for (int i = 0; i < path.size() - 1; i++) {
+            int coor1 = (int) path.get(i);
+            int coor2 = (int) path.get(i + 1);
+            residual[coor1][coor2] -= flow;
+        }
+        return flow;
     }
 
     /**
      * checks if a shortest augmenting path exists, prints the path if true
-     * @param start the first node of the graph
      * @param sink the last node of the graph
      * @return whether or not a path exists
      */
-    public boolean bellman(int start, int sink) {
+    public boolean bellman(int sink) {
         int cost[] = new int[vertexCt];
         cost[0] = 0;
         for (int n = 1; n < vertexCt; n++) {
@@ -175,7 +174,7 @@ public class Graph {
         }
         int parents[] = new int[vertexCt];
         for (int n = 1; n < vertexCt; n++) {
-            parents[n] = 1000;
+            parents[n] = -1;
         }
         for (int i = 0; i < vertexCt; i++) {
             for (int u = 0; u < vertexCt; u++) {
@@ -187,11 +186,19 @@ public class Graph {
                 }
             }
         }
-            if (parents[sink] != 1000) {
+            if (parents[sink] != -1) {
                 ArrayList path = writePath(parents);
-                addFlow(path);
-                System.out.println("$"+cost[cost.length-1]+" ");
-                return true;
+                int flow= addFlow(path);
+                if (flow==0) return false;
+                else {
+                    for (int j=0; j<path.size(); j++){
+                        System.out.print(path.get(j)+" ");
+                    }
+                    System.out.print("(" + flow + ") ");
+                    totalFlow+=flow;
+                    System.out.println("$" + cost[cost.length - 1] + " ");
+                    return true;
+                }
             } else {
                 return false;
             }
@@ -199,7 +206,7 @@ public class Graph {
 
 
     public void finalEdgeFlow(){
-        System.out.println(totalFlow);
+        System.out.println("Total flow: "+totalFlow);
     }
 
 
