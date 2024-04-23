@@ -222,6 +222,7 @@ public class Graph {
         for (String fileName : files) {
             Graph graph = new Graph(fileName);
             graph.minCostMaxFlow();
+            System.out.println("-------------------------------------- \n");
         }
     }
 }
